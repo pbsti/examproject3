@@ -12,9 +12,21 @@
 </head>
 <body <?php body_class(); ?> class="w-full h-full">
 
-  <div class="">
-
-
-    <header>
-
+    <header class="w-full h-17 bg-white">
+      <nav class="h-full">
+        <ul class="text-black flex justify-around items-center h-full">
+                <li class="text-base font-bold">
+                  <a href="<?php echo esc_url(get_permalink(get_page_by_path(''))); ?>">HOME</a>
+                </li>
+                <li class="text-base font-bold">
+                  <a href="<?php echo esc_url(get_permalink(get_page_by_path(''))); ?>">BLOG</a>
+                </li>
+                <li class="text-base font-bold">
+                  <a href="<?php echo esc_url(get_permalink(get_page_by_path(''))); ?>">LOG IN</a>
+                </li>
+                <li class="text-base font-bold">
+                  <a href="<?php echo esc_url(get_permalink(get_page_by_path(''))); ?>">CART</a>
+                </li>
+        </ul>
+      </nav>
     </header>
