@@ -19,7 +19,7 @@
                   <a href="<?php echo esc_url(get_permalink(get_page_by_path(''))); ?>">HOME</a>
                 </li>
                 <li class="text-base font-bold">
-                  <a href="<?php echo esc_url(get_permalink(get_page_by_path(''))); ?>">BLOG</a>
+                  <a href="<?php echo esc_url(get_permalink(get_page_by_path('the-quick-blogs'))); ?>">BLOGS</a>
                 </li>
                 <li class="text-base font-bold">
                   <a href="<?php echo esc_url(get_permalink(get_page_by_path(''))); ?>">LOG IN</a>

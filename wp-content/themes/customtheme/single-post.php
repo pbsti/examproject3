@@ -1,8 +1,8 @@
 <?php get_header(); ?>
 
-<div class="container mx-auto px-4 py-8 max-w-5xl">
+<main class="container mx-auto px-4 py-8 max-w-5xl">
     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-        <div class="mb-2">
+        <div class="">
             <?php
             $categories = get_the_category();
             if (!empty($categories)) {
@@ -56,6 +56,6 @@
 
 
     <?php endwhile; endif; ?>
-</div>
+</main>
 
 <?php get_footer(); ?>
