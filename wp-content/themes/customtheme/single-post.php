@@ -33,15 +33,15 @@
                 ?>
             </div>
 
-            <div class="flex flex-col text-xs text-black min-w-35 pl-6 items-end">
+            <div class="flex flex-col text-xs text-black min-w-38 pl-6 items-end">
                 <span>
-                    Date:
+                    <?php pll_e('Date:') ?>
                     <time datetime="<?php echo get_the_date('c'); ?>">
                         <?php echo get_the_date(); ?>
                     </time>
                 </span>
                 <span>
-                    Author:
+                    <?php pll_e('Author:') ?>
                     <?php the_author(); ?>
                 </span>
             </div>

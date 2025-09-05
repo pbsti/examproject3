@@ -18,6 +18,9 @@ function plp_register_strings() {
         pll_register_string('Blogs', 'Yumgo Blogs');
         pll_register_string('Log In', 'Log In');
         pll_register_string('Cart', 'Cart');
+        pll_register_string('Date:', 'Date:');
+        pll_register_string('Author:', 'Author:');
+        pll_register_string('Leave a reply', 'Leave a reply');
 }
 
 add_action('init', 'plp_register_strings');
