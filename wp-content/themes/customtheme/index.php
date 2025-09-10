@@ -7,33 +7,111 @@
                     <?php if ($img = get_field('main_hero_image')): ?>
                         <img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>" class="w-full object-cover" />
                     <?php endif; ?>
-                    <!-- FIX :D -->
-                    <div class="flex items-center justify-center absolute top-2/3 left-1/2 md:left-6/11 text-center gap-10 px-4">
-                        <a href="#vendors" class="bg-yellow-300 text-black font-bold px-6 py-2 rounded shadow hover:bg-yellow-400 transition">Meet our vendors</a>
-                        <a href="#about" class="bg-yellow-200 text-black font-bold px-6 py-2 rounded shadow hover:bg-yellow-300 transition">About us</a>
+                    <div class="hidden md:flex items-center justify-center absolute top-2/3 left-1/2 md:left-6/11 text-center gap-10 px-4 lg:ml-22">
+                        <a href="#vendors" class="bg-yellow-300 text-lg text-black font-bold px-6 py-2 rounded shadow hover:bg-yellow-400 transition">Meet our vendors</a>
+                        <a href="#about" class="bg-yellow-200 text-lg text-black font-bold px-6 py-2 rounded shadow hover:bg-yellow-300 transition">About us</a>
                     </div>
                 </div>
             </section>
 
-            <section class="flex flex-col md:flex-row items-center justify-between px-8 py-16 max-w-7xl mx-auto">
+            <section class="flex flex-col md:flex-row items-center justify-between px-8 py-8 max-w-7xl mx-auto">
                     
-                <div class="md:w-1/2 w-full flex flex-col items-center md:items-start">
+                <div class="md:w-1/2 w-full flex flex-col items-center md:items-start md:border border-gray-200 md:rounded-lg md:shadow-sm p-4 mr-4">
                     <?php if ($img = get_field('main_headline_image')): ?>
-                        <img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>" class="w-full max-w-md object-contain" />
+                        <img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>" class="w-full max-w-md object-contain md:rounded-lg" />
                     <?php endif; ?>
                     <?php if ($text = get_field('first_text_on_fp')): ?>
                         <p class="p-6 text-black leading-relaxed">
                             <?php echo esc_html($text); ?>
                         </p>
                     <?php endif; ?>
-                </div>
-
-                <div class="md:w-1/2 w-full flex justify-center mb-8 md:mb-0">
-                    <?php if ($img = get_field('first_side_image')): ?>
-                        <img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>" class="w-2/3 max-w-xs mb-6 object-contain" />
+                    <?php
+                        $first_button_text = get_field('first_button_text');
+                        $first_button_link = get_field('first_button_link');
+                    if ($first_button_text && $first_button_link): ?>
+                        <a href="<?php echo esc_url($first_button_link['url']); ?>" class="flex self-center bg-[#DCE896] text-black font-bold px-8 py-2 rounded shadow hover:bg-green-300 transition">
+                            <?php echo esc_html($first_button_text); ?>
+                        </a>
                     <?php endif; ?>
                 </div>
 
+                <div class="md:w-1/2 w-full flex justify-center">
+                    <?php if ($img = get_field('first_side_image')): ?>
+                        <img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>" class="w-2/3 max-w-xs mb-6 object-contain md:rounded-lg" />
+                    <?php endif; ?>
+                </div>
+
+            </section>
+            
+            <section class="flex flex-row-reverse items-center justify-between md:px-8 py-8 max-w-7xl mx-auto">
+                <div class="md:w-1/2 w-full flex flex-col items-center md:border border-gray-200 md:rounded-lg md:shadow-sm p-4 ml-4">
+                    <?php if ($section_one_headline = get_field('section_one_headline')): ?>
+                        <h2 class="text-3xl font-bold mb-4 text-black"><?php echo esc_html($section_one_headline); ?></h2>
+                    <?php endif; ?>
+
+                    <?php if ($section_one_text = get_field('section_one_text')): ?>
+                        <p class="p-6 text-black leading-relaxed">
+                            <?php echo esc_html($section_one_text); ?>
+                        </p>
+                    <?php endif; ?>
+                    <?php
+                        $section_one_button_text = get_field('section_one_button_text');
+                        $section_one_button_link = get_field('section_one_button_link');
+                    if ($section_one_button_text && $section_one_button_link): ?>
+                        <a href="<?php echo esc_url($section_one_button_link['url']); ?>" class="bg-[#DCE896] text-black font-bold px-8 py-2 rounded shadow hover:bg-green-300 transition">
+                            <?php echo esc_html($section_one_button_text); ?>
+                        </a>
+                    <?php endif; ?>
+                </div>
+
+                <div class="md:w-1/2 w-full flex flex-col items-center">
+                    <?php if ($section_one_image = get_field('section_one_image')): ?>
+                        <img src="<?php echo esc_url($section_one_image['url']); ?>" alt="<?php echo esc_attr($section_one_image['alt']); ?>" class="w-full md:max-h-120 lg:h-82 object-cover md:rounded-lg" />
+                    <?php endif; ?>
+                </div>
+            </section>
+
+            <section class="flex items-center justify-center text-center px-16 py-8 max-w-7xl mx-auto">
+                    <?php if($section_splitter_text_one = get_field('section_splitter_text_one')): ?>
+                        <h2 class="text-3xl font-bold mb-4 text-black"><?php echo esc_html($section_splitter_text_one); ?></h2>
+                    <?php endif; ?>
+            </section>
+
+            <section class="flex flex-row items-center justify-between md:px-8 py-8 max-w-7xl mx-auto">
+                <div class="md:w-1/2 w-full flex flex-col items-center md:border border-gray-200 md:rounded-lg md:shadow-sm p-4 mr-4">
+                    <?php if ($section_two_headline = get_field('section_two_headline')): ?>
+                        <h2 class="text-3xl font-bold mb-4 text-black"><?php echo esc_html($section_two_headline); ?></h2>
+                    <?php endif; ?>
+
+                    <?php if ($section_two_text = get_field('section_two_text')): ?>
+                        <p class="p-6 text-black leading-relaxed">
+                            <?php echo esc_html($section_two_text); ?>
+                        </p>
+                    <?php endif; ?>
+                    <?php
+                        $section_two_button_text = get_field('section_two_button_text');
+                        $section_two_button_link = get_field('section_two_button_link');
+                    if ($section_two_button_text && $section_two_button_link): ?>
+                        <a href="<?php echo esc_url($section_two_button_link['url']); ?>" class="bg-[#FFD54F] text-black font-bold px-8 py-2 rounded shadow hover:bg-yellow-400 transition">
+                            <?php echo esc_html($section_two_button_text); ?>
+                        </a>
+                    <?php endif; ?>
+                </div>
+
+                <div class="md:w-1/2 w-full flex flex-col items-center">
+                    <?php if ($section_two_image = get_field('section_two_image')): ?>
+                        <img src="<?php echo esc_url($section_two_image['url']); ?>" alt="<?php echo esc_attr($section_one_image['alt']); ?>" class="w-full md:max-h-120 lg:h-76 object-cover md:rounded-lg" />
+                    <?php endif; ?>
+                </div>
+            </section>
+
+            <section class="flex flex-col items-center text-center justify-center px-16 py-8 max-w-7xl mx-auto">
+                    <?php if($testimonials_title = get_field('testimonials_title')): ?>
+                        <h2 class="text-5xl font-bold mb-4 text-black"><?php echo esc_html($testimonials_title); ?></h2>
+                    <?php endif; ?>
+                    <?php if($testimonials_text_line = get_field('testimonials_text_line')): ?>
+                        <h3 class="text-3xl font-bold mb-4 text-black"><?php echo esc_html($testimonials_text_line); ?></h3>
+                    <?php endif; ?>
             </section>
 
         </main>
