@@ -11,10 +11,10 @@
         defined('ABSPATH') || exit;
         get_header();
 
-        $hero_image   = get_field('sdg_hero_image');   // image (array | ID | URL)
-        $hero_heading = get_field('sdg_hero_heading'); // text
+        $hero_image   = get_field('sdg_hero_image');   
+        $hero_heading = get_field('sdg_hero_heading'); 
 
-        // Normalize image URL
+       
         $hero_url = '';
         if ($hero_image) {
         if (is_array($hero_image) && isset($hero_image['url'])) $hero_url = esc_url($hero_image['url']);
@@ -72,7 +72,7 @@
                             $is_even = $sdg_args->current_post % 2 === 0;
                         ?>
                         <div class="flex w-full my-8 <?php echo $is_even ? 'flex-row-reverse' : 'flex-row'; ?>">
-                            <div class="md:w-1/2 w-full flex flex-col items-center justify-center md:border border-gray-200 md:rounded-lg md:shadow-sm p-4 <?php echo $is_even ? 'ml-4' : 'mr-4'; ?>">
+                            <div class="md:w-1/2 w-full flex flex-col items-center justify-left md:border border-gray-200 md:rounded-lg md:shadow-sm p-4 <?php echo $is_even ? 'ml-4' : 'mr-4'; ?>">
                                 <?php if ($sdg_main_side_heading = get_field("sdg_main_side_heading")): ?>
                                     <h3 class="text-4xl font-bold mb-4 text-black"><?php echo esc_html($sdg_main_side_heading); ?></h3>
                                 <?php endif; ?>
