@@ -46,7 +46,7 @@
             <section class="flex flex-row-reverse items-center justify-between md:px-8 py-8 max-w-7xl mx-auto">
                 <div class="md:w-1/2 w-full flex flex-col items-center md:border border-gray-200 md:rounded-lg md:shadow-sm p-4 ml-4">
                     <?php if ($section_one_headline = get_field('section_one_headline')): ?>
-                        <h2 class="text-3xl font-bold mb-4 text-black"><?php echo esc_html($section_one_headline); ?></h2>
+                        <h2 id="vendors" class="text-3xl font-bold mb-4 text-black"><?php echo esc_html($section_one_headline); ?></h2>
                     <?php endif; ?>
 
                     <?php if ($section_one_text = get_field('section_one_text')): ?>
@@ -80,7 +80,7 @@
             <section class="flex flex-row items-center justify-between md:px-8 py-8 max-w-7xl mx-auto">
                 <div class="md:w-1/2 w-full flex flex-col items-center md:border border-gray-200 md:rounded-lg md:shadow-sm p-4 mr-4">
                     <?php if ($section_two_headline = get_field('section_two_headline')): ?>
-                        <h2 class="text-3xl font-bold mb-4 text-black"><?php echo esc_html($section_two_headline); ?></h2>
+                        <h2 id="about" class="text-3xl font-bold mb-4 text-black"><?php echo esc_html($section_two_headline); ?></h2>
                     <?php endif; ?>
 
                     <?php if ($section_two_text = get_field('section_two_text')): ?>

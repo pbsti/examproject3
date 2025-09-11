@@ -1,6 +1,7 @@
 <?php
 function enqueue_theme_assets() {
     wp_enqueue_style('styles', get_template_directory_uri() . '/css/style.css', array(), filemtime(get_template_directory() . '/css/style.css'));
+    wp_enqueue_script('scroll-to', get_template_directory_uri() . '/js/scrollTo.js', array(), filemtime(get_template_directory() . '/js/scrollTo.js'), true);
     add_theme_support('title-tag');
 }
 
