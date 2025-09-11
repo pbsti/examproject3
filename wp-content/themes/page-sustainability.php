@@ -7,8 +7,8 @@
 defined('ABSPATH') || exit;
 get_header();
 
-$hero_image   = get_field('sdg_hero_image');   // image (array | ID | URL)
-$hero_heading = get_field('sdg_hero_heading'); // text
+$hero_image   = get_field('sdg_hero_image');  
+$hero_heading = get_field('sdg_hero_heading'); 
 
 // Normalize image URL
 $hero_url = '';
@@ -46,10 +46,10 @@ if ($hero_image) {
     <?php endif; ?>
   </section>
 
-  <!-- MISSION (page content) -->
+  <!-- MISSION -->
   <section class="bg-neutral-900 text-white">
     <div class="max-w-screen-xl mx-auto px-4 py-12 lg:py-16">
-      <h2 class="m-0 mb-5 text-2xl sm:text-3xl font-bold tracking-tight">our mission</h2>
+      <h2 class="m-0 mb-5 text-2xl sm:text-3xl font-bold tracking-tight">Our mission</h2>
 
       <div class="max-w-xl text-neutral-200 text-[0.95rem] leading-relaxed space-y-4">
         <?php while (have_posts()) { the_post(); the_content(); } ?>
