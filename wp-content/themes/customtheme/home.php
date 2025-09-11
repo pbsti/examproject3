@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 <main>
-    <h1 class="flex justify-center text-6xl bold mt-4"><?php pll_e("Yumgo Blogs") ?></h1>
+    <h1 class="flex justify-center text-7xl bold mt-8"><?php pll_e("Yumgo Blogs") ?></h1>
 
     <?php
         $all_categories = get_categories();
@@ -19,7 +19,7 @@
 
         $query = new WP_Query($args);
     ?>
-        <div class="flex flex-col sm:flex-row gap-8 md:gap-12 px-8 md:px-16 py-8">
+        <div class="flex flex-col sm:flex-row gap-8 md:gap-12 px-8 lg:px-32 py-8">
           <div class="flex items-center">
             <label class="sr-only" for="cat-select">Categories</label>
             <button class="relative">
@@ -44,7 +44,7 @@
           </div>
         </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 px-8 md:px-16 py-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 px-8 lg:px-32 py-8">
         <?php if (have_posts()) : while (have_posts()) : the_post();
 
             $images = [];
