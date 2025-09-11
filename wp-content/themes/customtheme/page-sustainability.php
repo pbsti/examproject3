@@ -71,7 +71,7 @@
                             $is_even = $sdg_args->current_post % 2 === 0;
                         ?>
                         <div class="flex w-full my-8 <?php echo $is_even ? 'flex-row-reverse' : 'flex-row'; ?>">
-                            <div class="md:w-1/2 w-full flex flex-col items-center justify-center md:border border-gray-200 md:rounded-lg md:shadow-sm p-4 <?php echo $is_even ? 'ml-4' : 'mr-4'; ?>">
+                            <div class="md:w-1/2 w-full flex flex-col items-center justify-left md:border border-gray-200 md:rounded-lg md:shadow-sm p-4 <?php echo $is_even ? 'ml-4' : 'mr-4'; ?>">
                                 <?php if ($sdg_main_side_heading = get_field("sdg_main_side_heading")): ?>
                                     <h3 class="text-5xl font-bold mb-4 text-[#ED6543]"><?php echo esc_html($sdg_main_side_heading); ?></h3>
                                 <?php endif; ?>
