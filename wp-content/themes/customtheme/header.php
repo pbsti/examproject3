@@ -21,7 +21,7 @@
                   </a>
                 </li>
                 <li class="text-base font-bold">
-                  <a href="<?php echo esc_url(home_url('/')); ?>">HOME</a>
+                  <a href="<?php echo esc_url(get_permalink(get_page_by_path('sustainability'))); ?>">SUSTAINABILITY</a>
                 </li>
                 <li class="text-base font-bold">
                   <a href="<?php echo esc_url(get_permalink(get_page_by_path('yumgo-blogs'))); ?>">BLOGS</a>

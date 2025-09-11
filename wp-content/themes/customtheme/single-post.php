@@ -7,9 +7,9 @@
             $categories = get_the_category();
             if (!empty($categories)) {
                 foreach ($categories as $index => $cat) {
-                    echo '<a href="' . esc_url(get_category_link($cat->term_id)) . '" class="text-emerald-500 font-bold text-sm uppercase cursor-pointer hover:text-green-600 transition-colors">' . esc_html($cat->name) . '</a>';
+                    echo '<a href="' . esc_url(get_category_link($cat->term_id)) . '" class="text-[#ED6543] font-bold text-sm uppercase cursor-pointer hover:text-green-600 transition-colors">' . esc_html($cat->name) . '</a>';
                     if ($index < count($categories) - 1) {
-                        echo '<span class="text-emerald-500">,&nbsp</span>';
+                        echo '<span class="text-[#ED6543]">,&nbsp</span>';
                     }
                 }
             }

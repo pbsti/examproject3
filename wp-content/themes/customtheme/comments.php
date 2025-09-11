@@ -30,7 +30,7 @@ if ( post_password_required() ) {
                         </div>
                         <div class="flex-1">
                             <div class="flex items-center gap-2 mb-1">
-                                <span class="font-semibold text-emerald-500"><?php echo get_comment_author(); ?></span>
+                                <span class="font-semibold text-[#DCE896]"><?php echo get_comment_author(); ?></span>
                                 <span class="text-xs text-gray-500"><?php echo get_comment_date('F j, Y \a\t H:i'); ?></span>
                             </div>
                             <div class="text-base text-black mb-2"><?php comment_text(); ?></div>
@@ -40,7 +40,7 @@ if ( post_password_required() ) {
                                     'reply_text' => 'Reply',
                                     'depth'      => $depth,
                                     'max_depth'  => $args['max_depth'],
-                                    'class'      => 'text-emerald-500 hover:underline'
+                                    'class'      => 'text-[#DCE896] hover:underline'
                                 ]));
                                 ?>
                             </div>
@@ -57,7 +57,7 @@ if ( post_password_required() ) {
         <?php
         if ( comments_open() ) {
             comment_form([
-                'class_submit' => 'bg-emerald-500 text-white px-6 py-2 rounded-lg font-bold hover:bg-green-600 transition cursor-pointer',
+                'class_submit' => 'bg-[#DCE896] text-black px-6 py-2 rounded-lg font-bold hover:bg-green-600 transition cursor-pointer',
                 'title_reply'  => '<span class="text-lg font-bold py-2">' . pll_e('Leave a reply') .'</span>',
                 'comment_field'=> '<textarea id="comment" name="comment" class="w-full border border-gray-300 rounded-lg p-2 my-2" rows="4" required></textarea>',
             ]);
