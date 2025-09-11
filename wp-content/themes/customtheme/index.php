@@ -66,7 +66,7 @@
 
                 <div class="md:w-1/2 w-full flex flex-col items-center">
                     <?php if ($section_one_image = get_field('section_one_image')): ?>
-                        <img src="<?php echo esc_url($section_one_image['url']); ?>" alt="<?php echo esc_attr($section_one_image['alt']); ?>" class="w-full md:max-h-120 lg:h-82 object-cover md:rounded-lg" />
+                        <img src="<?php echo esc_url($section_one_image['url']); ?>" alt="<?php echo esc_attr($section_one_image['alt']); ?>" class="h-full w-auto md:w-full md:max-h-120 lg:h-82 object-cover md:rounded-lg" />
                     <?php endif; ?>
                 </div>
             </section>
@@ -100,7 +100,7 @@
 
                 <div class="md:w-1/2 w-full flex flex-col items-center">
                     <?php if ($section_two_image = get_field('section_two_image')): ?>
-                        <img src="<?php echo esc_url($section_two_image['url']); ?>" alt="<?php echo esc_attr($section_one_image['alt']); ?>" class="w-full md:max-h-120 lg:h-76 object-cover md:rounded-lg" />
+                        <img src="<?php echo esc_url($section_two_image['url']); ?>" alt="<?php echo esc_attr($section_one_image['alt']); ?>" class="h-full w-auto md:w-full md:max-h-120 lg:h-76 object-cover md:rounded-lg" />
                     <?php endif; ?>
                 </div>
             </section>
