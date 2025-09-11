@@ -86,3 +86,11 @@ add_filter('use_block_editor_for_post_type', function($use_block_editor, $post_t
     }
     return $use_block_editor;
 }, 10, 2);
+
+add_filter('template_include', function ($template) {
+    if (is_page('sustainability')) {
+        $custom = locate_template('page-sustainability.php');
+        if ($custom) return $custom;
+    }
+    return $template;
+});
