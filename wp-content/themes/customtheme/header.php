@@ -5,8 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/iconify/2.2.1/iconify.min.js"></script>
-  <title><?php bloginfo("name"); ?></title>
-  <meta name="description" content="<?php bloginfo("description"); ?>">
+  <title>
+    <?php
+    if ( is_singular() ) {
+        the_title();
+    } elseif ( is_home() || is_front_page() ) {
+        bloginfo('name');
+    } else {
+        bloginfo('name');
+    }
+    ?>
+  </title>
+  <?php if (has_excerpt()) : ?>
+    <meta name="description" content="<?php echo esc_attr(get_the_excerpt()); ?>">
+  <?php elseif (get_the_content()) : ?>
+    <meta name="description" content="<?php echo esc_attr(wp_trim_words(strip_tags(get_the_content()), 25)); ?>">
+  <?php else : ?>
+    <meta name="description" content="<?php bloginfo('description'); ?>">
+  <?php endif; ?>
   <link rel="icon" href="<?php echo get_template_directory_uri() . '/css/img/YumGo.png' ?>" type="image/png">
   <?php wp_head(); ?>
 </head>
@@ -17,7 +33,7 @@
         <ul class="text-black flex justify-around items-center h-full">
                 <li class="w-25">
                   <a href="<?php echo esc_url(home_url('/')); ?>">
-                    <img src="<?php echo get_template_directory_uri() . '/css/img/YumGoWide.png' ?>" alt="Logo">
+                    <img src="<?php echo get_template_directory_uri() . '/css/img/YumGoWide.png' ?>" alt="Logo_YumGo_Food_Delivery">
                   </a>
                 </li>
                 <li class="text-base font-bold">
