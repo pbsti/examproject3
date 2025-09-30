@@ -11,7 +11,6 @@
                         <a href="#vendors" class="bg-yellow-300 text-lg text-black font-bold px-6 py-2 rounded shadow hover:bg-yellow-400 transition">Meet our vendors</a>
                         <a href="#about" class="bg-yellow-200 text-lg text-black font-bold px-6 py-2 rounded shadow hover:bg-yellow-300 transition">About us</a>
                     </div>
-                </div>
             </section>
 
             <section class="flex flex-col md:flex-row items-center justify-between px-8 py-8 max-w-7xl mx-auto">
