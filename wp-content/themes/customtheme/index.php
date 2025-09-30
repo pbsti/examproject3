@@ -139,7 +139,7 @@
                                 <span class="iconify text-2xl <?php echo $i <= $rating ? 'text-red-500' : 'text-gray-300'; ?>" data-icon="mdi:star"></span>
                             <?php endfor; ?>
                         </div>
-                        <p class="text-black text-center"><?php the_content(); ?></p>
+                        <div class="text-black text-center"><?php the_content(); ?></div>
                     </div>
                     <?php endwhile; wp_reset_postdata(); endif; ?>
                 </div>
