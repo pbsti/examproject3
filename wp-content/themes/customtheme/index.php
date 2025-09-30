@@ -18,7 +18,7 @@
                     
                 <div class="md:w-1/2 w-full flex flex-col items-center md:items-start md:border border-gray-200 md:rounded-lg md:shadow-sm p-4 mr-4">
                     <?php if ($img = get_field('main_headline_image')): ?>
-                        <img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>" class="w-full max-w-md object-contain md:rounded-lg" />
+                        <h1><img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>" class="w-full max-w-md object-contain md:rounded-lg" /></h1>
                     <?php endif; ?>
                     <?php if ($text = get_field('first_text_on_fp')): ?>
                         <p class="p-6 text-black leading-relaxed">
@@ -29,7 +29,8 @@
                         $first_button_text = get_field('first_button_text');
                         $first_button_link = get_field('first_button_link');
                     if ($first_button_text && $first_button_link): ?>
-                        <a href="<?php echo esc_url($first_button_link['url']); ?>" class="flex self-center bg-[#DCE896] text-black font-bold px-8 py-2 rounded shadow hover:bg-green-300 transition">
+                        <a href="<?php echo esc_url($first_button_link['url']); ?>" class="flex self-center bg-[#DCE896] text-black font-bold px-8 py-2 rounded shadow hover:bg-green-300 transition"
+                            aria-label="<?php echo esc_attr($first_button_text); ?>">
                             <?php echo esc_html($first_button_text); ?>
                         </a>
                     <?php endif; ?>
@@ -58,7 +59,8 @@
                         $section_one_button_text = get_field('section_one_button_text');
                         $section_one_button_link = get_field('section_one_button_link');
                     if ($section_one_button_text && $section_one_button_link): ?>
-                        <a href="<?php echo esc_url($section_one_button_link['url']); ?>" class="bg-[#DCE896] text-black font-bold px-8 py-2 rounded shadow hover:bg-green-300 transition">
+                        <a href="<?php echo esc_url($section_one_button_link['url']); ?>" class="bg-[#DCE896] text-black font-bold px-8 py-2 rounded shadow hover:bg-green-300 transition"
+                            aria-label="<?php echo esc_attr($section_one_button_text); ?>">
                             <?php echo esc_html($section_one_button_text); ?>
                         </a>
                     <?php endif; ?>
@@ -92,7 +94,8 @@
                         $section_two_button_text = get_field('section_two_button_text');
                         $section_two_button_link = get_field('section_two_button_link');
                     if ($section_two_button_text && $section_two_button_link): ?>
-                        <a href="<?php echo esc_url($section_two_button_link['url']); ?>" class="bg-[#FFD54F] text-black font-bold px-8 py-2 rounded shadow hover:bg-yellow-400 transition">
+                        <a href="<?php echo esc_url($section_two_button_link['url']); ?>" class="bg-[#FFD54F] text-black font-bold px-8 py-2 rounded shadow hover:bg-yellow-400 transition"
+                            aria-label="<?php echo esc_attr($section_two_button_text); ?>">
                             <?php echo esc_html($section_two_button_text); ?>
                         </a>
                     <?php endif; ?>
@@ -100,7 +103,7 @@
 
                 <div class="md:w-1/2 w-full flex flex-col items-center">
                     <?php if ($section_two_image = get_field('section_two_image')): ?>
-                        <img src="<?php echo esc_url($section_two_image['url']); ?>" alt="<?php echo esc_attr($section_one_image['alt']); ?>" class="h-full w-auto md:w-full md:max-h-120 lg:h-76 object-cover md:rounded-lg" />
+                        <img src="<?php echo esc_url($section_two_image['url']); ?>" alt="<?php echo esc_attr($section_two_image['alt']); ?>" class="h-full w-auto md:w-full md:max-h-120 lg:h-76 object-cover md:rounded-lg" />
                     <?php endif; ?>
                 </div>
             </section>

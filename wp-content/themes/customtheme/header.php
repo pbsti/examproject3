@@ -19,7 +19,7 @@
       <img src="<?php echo get_template_directory_uri() . '/css/img/YumGoWide.png' ?>" alt="Logo" class="h-10">
     </a>
 
-    <button id="menu-toggle" class="md:hidden text-3xl focus:outline-none">
+    <button id="menu-toggle" class="md:hidden text-3xl focus:outline-none" aria-label="Open main menu">
       <span class="iconify" data-icon="mdi:menu"></span>
     </button>
 
@@ -52,7 +52,7 @@
               }
             }
           ?>
-          <button id="lang-toggle" class="flex items-center px-2 py-1 bg-white hover:bg-gray-100">
+          <button id="lang-toggle" class="flex items-center px-2 py-1 bg-white hover:bg-gray-100" aria-label="Change language">
             <?php echo $current_flag; ?>
             <span class="iconify" data-icon="mdi:chevron-down"></span>
           </button>
