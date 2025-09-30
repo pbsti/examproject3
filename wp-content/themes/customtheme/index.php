@@ -75,7 +75,7 @@
 
             <section class="flex items-center justify-center text-center px-16 py-8 max-w-7xl mx-auto">
                     <?php if($section_splitter_text_one = get_field('section_splitter_text_one')): ?>
-                        <h2 class="text-3xl font-bold mb-4 text-black"><?php echo esc_html($section_splitter_text_one); ?></h2>
+                        <p class="text-3xl font-bold mb-4 text-black"><?php echo esc_html($section_splitter_text_one); ?></p>
                     <?php endif; ?>
             </section>
 
