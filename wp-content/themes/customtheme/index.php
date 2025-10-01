@@ -5,7 +5,7 @@
         <main class="min-h-screen w-full">
             <section class="w-full flex justify-center z-0 overflow-hidden relative">
                     <?php if ($img = get_field('main_hero_image')): ?>
-                        <img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>" class="w-full object-cover" />
+                        <img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>" class="w-full object-cover" loading="lazy" />
                     <?php endif; ?>
                     <div class="hidden md:flex items-center justify-center absolute top-2/3 left-1/2 md:left-6/11 text-center gap-10 px-4 lg:ml-22">
                         <a href="#vendors" class="bg-yellow-300 text-lg text-black font-bold px-6 py-2 rounded shadow hover:bg-yellow-400 transition">Meet our vendors</a>
@@ -17,7 +17,7 @@
                     
                 <div class="md:w-1/2 w-full flex flex-col items-center md:items-start md:border border-gray-200 md:rounded-lg md:shadow-sm p-4 mr-4">
                     <?php if ($img = get_field('main_headline_image')): ?>
-                        <h1><img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>" class="w-full max-w-md object-contain md:rounded-lg" /></h1>
+                        <h1><img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>" class="w-full max-w-md object-contain md:rounded-lg" loading="lazy" /></h1>
                     <?php endif; ?>
                     <?php if ($text = get_field('first_text_on_fp')): ?>
                         <p class="p-6 text-black leading-relaxed">
@@ -37,7 +37,7 @@
 
                 <div class="md:w-1/2 w-full flex justify-center">
                     <?php if ($img = get_field('first_side_image')): ?>
-                        <img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>" class="w-2/3 max-w-xs mb-6 object-contain md:rounded-lg" />
+                        <img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>" class="w-2/3 max-w-xs mb-6 object-contain md:rounded-lg" loading="lazy" />
                     <?php endif; ?>
                 </div>
 
@@ -67,7 +67,7 @@
 
                 <div class="md:w-1/2 w-full flex flex-col items-center">
                     <?php if ($section_one_image = get_field('section_one_image')): ?>
-                        <img src="<?php echo esc_url($section_one_image['url']); ?>" alt="<?php echo esc_attr($section_one_image['alt']); ?>" class="h-full w-auto md:w-full md:max-h-120 lg:h-82 object-cover md:rounded-lg" />
+                        <img src="<?php echo esc_url($section_one_image['url']); ?>" alt="<?php echo esc_attr($section_one_image['alt']); ?>" class="h-full w-auto md:w-full md:max-h-120 lg:h-82 object-cover md:rounded-lg" loading="lazy" />
                     <?php endif; ?>
                 </div>
             </section>
@@ -102,7 +102,7 @@
 
                 <div class="md:w-1/2 w-full flex flex-col items-center">
                     <?php if ($section_two_image = get_field('section_two_image')): ?>
-                        <img src="<?php echo esc_url($section_two_image['url']); ?>" alt="<?php echo esc_attr($section_two_image['alt']); ?>" class="h-full w-auto md:w-full md:max-h-120 lg:h-76 object-cover md:rounded-lg" />
+                        <img src="<?php echo esc_url($section_two_image['url']); ?>" alt="<?php echo esc_attr($section_two_image['alt']); ?>" class="h-full w-auto md:w-full md:max-h-120 lg:h-76 object-cover md:rounded-lg" loading="lazy" />
                     <?php endif; ?>
                 </div>
             </section>
@@ -131,7 +131,7 @@
                     ?>
                     <div class="border-2 border-orange-400 rounded-xl p-8 flex flex-col items-center bg-white">
                         <?php if ($photo): ?>
-                            <img src="<?php echo esc_url($photo['url']); ?>" alt="<?php echo esc_attr($name); ?>" class="w-24 h-24 rounded-full mb-4 object-cover" />
+                            <img src="<?php echo esc_url($photo['url']); ?>" alt="<?php echo esc_attr($name); ?>" class="w-24 h-24 rounded-full mb-4 object-cover" loading="lazy"/>
                         <?php endif; ?>
                         <h4 class="font-bold text-xl mb-2 text-black"><?php echo esc_html($name); ?></h4>
                         <div class="flex mb-2">
