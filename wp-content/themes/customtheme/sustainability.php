@@ -45,23 +45,23 @@ Template Name: Sustainability Page
         </section>
 
         <section class="bg-neutral-900">
-            <div class="flex items-center justify-center md:px-16 py-8 md:max-w-7xl mx-auto">
-                <div class="md:w-1/2 w-full flex flex-col items-center justify-center p-4 mr-4">
-                    <?php if ($sdg_first_section_side_heading = get_field("sdg_first_section_side_heading")): ?>
-                        <h2 class="text-white m-0 mb-5 text-3xl sm:text-4xl font-bold tracking-tight"><?php echo esc_html($sdg_first_section_side_heading); ?></h2>
-                    <?php endif; ?>
-                    <?php if ($sdg_first_section_side_text = get_field("sdg_first_section_side_text")): ?>
-                        <p class="text-[#ED6543] m-0 mb-5 text-lg sm:text-1xl tracking-widest leading-8"><?php echo esc_html($sdg_first_section_side_text); ?></p>
-                    <?php endif; ?>
-                </div>
+    <div class="flex flex-col md:flex-row w-full md:px-16 md:py-8 pt-8 md:max-w-7xl mx-auto">
+        <div class="md:w-1/2 w-full flex flex-col items-center justify-left md:rounded-lg md:shadow-sm p-4 md:mr-4">
+            <?php if ($sdg_first_section_side_heading = get_field("sdg_first_section_side_heading")): ?>
+                <h2 class="text-white m-0 mb-5 text-3xl sm:text-4xl font-bold tracking-tight"><?php echo esc_html($sdg_first_section_side_heading); ?></h2>
+            <?php endif; ?>
+            <?php if ($sdg_first_section_side_text = get_field("sdg_first_section_side_text")): ?>
+                <p class="text-[#ED6543] m-0 mb-5 text-lg sm:text-1xl tracking-widest leading-8"><?php echo esc_html($sdg_first_section_side_text); ?></p>
+            <?php endif; ?>
+        </div>
 
-                <div class="md:w-1/2 w-full flex flex-col items-center">
-                    <?php if ($sdg_first_section_side_image = get_field("sdg_first_section_side_image")): ?>
-                        <img src="<?php echo esc_url($sdg_first_section_side_image['url']); ?>" alt="<?php echo esc_attr($sdg_first_section_side_image['alt']); ?>" class="h-full md:w-full md:max-h-120 object-cover md:rounded-lg" />
-                    <?php endif; ?>
-                </div>
-            </div>
-        </section>
+        <div class="md:w-1/2 w-full flex flex-col items-center">
+            <?php if ($sdg_first_section_side_image = get_field("sdg_first_section_side_image")): ?>
+                <img src="<?php echo esc_url($sdg_first_section_side_image['url']); ?>" alt="<?php echo esc_attr($sdg_first_section_side_image['alt']); ?>" class="h-full md:w-full md:max-h-120 object-cover md:rounded-lg" />
+            <?php endif; ?>
+        </div>
+    </div>
+</section>
 
         <section>
                 <div class="flex flex-col md:items-center text-center justify-center md:px-16 py-8 md:max-w-7xl mx-auto">
