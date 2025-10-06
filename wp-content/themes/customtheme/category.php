@@ -61,34 +61,34 @@
         ?>
 
         <div class="card-flip w-full border border-gray-200 rounded-lg shadow-sm bg-white relative h-64 cursor-pointer">
-        <div class="card-flip-inner w-full h-full relative">
+          <div class="card-flip-inner w-full h-full relative">
 
-            <a href="<?php the_permalink(); ?>" class="block w-full h-full card-face card-face-front">
-            <?php if (!empty($images)) : ?>
-                <img src="<?php echo esc_url($images[0]); ?>"
-                    alt="<?php the_title(); ?>"
-                    class="w-full h-64 object-cover rounded-lg" />
-                <div class="absolute left-0 top-0 right-0 bottom-[-2px] blackopa flex items-center justify-center rounded-lg">
-                    <h4 class="text-white text-2xl font-bold text-center px-4">
-                        <?php the_title(); ?>
-                    </h4>
-                </div>
-            <?php endif; ?>
-            </a>
+              <a href="<?php the_permalink(); ?>" class="block w-full h-full card-face card-face-front">
+              <?php if (!empty($images)) : ?>
+                  <img src="<?php echo esc_url($images[0]); ?>"
+                      alt="<?php the_title(); ?>"
+                      class="w-full h-64 object-cover rounded-lg" />
+                  <div class="absolute left-0 top-0 right-0 bottom-[-2px] blackopa flex items-center justify-center rounded-lg">
+                      <h4 class="text-white text-2xl font-bold text-center px-4">
+                          <?php the_title(); ?>
+                      </h4>
+                  </div>
+              <?php endif; ?>
+              </a>
 
-            <a href="<?php the_permalink(); ?>" class="block w-full h-full card-face card-face-back">
-            <?php if (!empty($images)) : ?>
-                <img src="<?php echo esc_url($images[0]); ?>"
-                    alt="<?php the_title(); ?>"
-                    class="w-full h-64 object-cover rounded-lg scale-x-[-1]" />
-                <div class="absolute left-0 top-0 right-0 bottom-[-2px] blackopa flex items-center justify-center rounded-lg">
-                <p class="text-white text-base font-normal text-center px-4">
-                    <?php echo get_the_excerpt(); ?>
-                </p>
-                </div>
-            <?php endif; ?>
-            </a>
-        </div>
+              <a href="<?php the_permalink(); ?>" tabindex="-1" class="block w-full h-full card-face card-face-back">
+              <?php if (!empty($images)) : ?>
+                  <img src="<?php echo esc_url($images[0]); ?>"
+                      alt="<?php the_title(); ?>"
+                      class="w-full h-64 object-cover rounded-lg scale-x-[-1]" />
+                  <div class="absolute left-0 top-0 right-0 bottom-[-2px] blackopa flex items-center justify-center rounded-lg">
+                  <p class="text-white text-base font-normal text-center px-4">
+                      <?php echo get_the_excerpt(); ?>
+                  </p>
+                  </div>
+              <?php endif; ?>
+              </a>
+          </div>
         </div>
 
         <?php endwhile; else : ?>
