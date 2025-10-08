@@ -68,6 +68,53 @@ function handle_testimonial_submission() {
 add_action('admin_post_nopriv_submit_testimonial', 'handle_testimonial_submission');
 add_action('admin_post_submit_testimonial', 'handle_testimonial_submission');
 
+// Food Survey
+function handle_food_survey_submission() {
+    if (isset($_POST['survey_submit'])) {
+
+        $post_id = wp_insert_post(array(
+            'post_type'   => 'survey_response',
+            'post_status' => 'publish',
+            'post_title'  => 'Survey Response - ' . date('Y-m-d H:i:s'),
+        ));
+
+        if ($post_id) {
+            // Simple fields
+            update_post_meta($post_id, 'gender', sanitize_text_field($_POST['survey_gender']));
+            update_post_meta($post_id, 'age', sanitize_text_field($_POST['survey_age']));
+            update_post_meta($post_id, 'health_importance', sanitize_text_field($_POST['survey_healthy_eating']));
+            update_post_meta($post_id, 'food_waste_frequency', sanitize_text_field($_POST['survey_food_waste_frequency']));
+
+            // Checkbox fields
+            if (!empty($_POST['survey_health_motives'])) {
+                $health_motives = array_map('sanitize_text_field', $_POST['survey_health_motives']);
+                update_post_meta($post_id, 'health_motives', $health_motives);
+            }
+
+            if (!empty($_POST['survey_food_waste_reasons'])) {
+                $food_waste_reasons = array_map('sanitize_text_field', $_POST['survey_food_waste_reasons']);
+                update_post_meta($post_id, 'food_waste_reasons', $food_waste_reasons);
+            }
+
+            if (!empty($_POST['survey_food_waste_motives'])) {
+                $food_waste_motives = array_map('sanitize_text_field', $_POST['survey_food_waste_motives']);
+                update_post_meta($post_id, 'food_waste_motives', $food_waste_motives);
+            }
+
+            if (!empty($_POST['survey_message_types'])) {
+                $message_types = array_map('sanitize_text_field', $_POST['survey_message_types']);
+                update_post_meta($post_id, 'message_types', $message_types);
+            }
+
+            // Thank you
+            wp_redirect(add_query_arg('survey_submitted', 'true', get_permalink()));
+            exit;
+        }
+    }
+}
+add_action('init', 'handle_food_survey_submission');
+
+
 function yumgo_register_testimonial_cpt() {
     register_post_type('testimonial', [
         'labels' => [
