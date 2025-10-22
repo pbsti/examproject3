@@ -72,6 +72,8 @@ add_action('admin_post_submit_testimonial', 'handle_testimonial_submission');
 function handle_food_survey_submission() {
     if (isset($_POST['survey_submit'])) {
 
+
+        print_r($_POST); // For debugging purposes
         $post_id = wp_insert_post(array(
             'post_type'   => 'survey_response',
             'post_status' => 'publish',
