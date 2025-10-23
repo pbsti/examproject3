@@ -136,3 +136,48 @@ add_filter('use_block_editor_for_post_type', function($use_block_editor, $post_t
     }
     return $use_block_editor;
 }, 10, 2);
+
+register_post_type('ability', array(
+    'label' => 'Abilities',
+    'public' => true,
+    'capability_type' => 'ability',
+    'map_meta_cap' => true,
+    'supports' => array('title', 'editor', 'thumbnail'),
+));
+
+function add_ability_caps_to_um_members() {
+    $role = get_role('administrator');
+    if ($role) {
+        $role->add_cap('read');
+        $role->add_cap('edit_abilities');
+        $role->add_cap('edit_others_abilities');
+        $role->add_cap('publish_abilities');
+        $role->add_cap('delete_abilities');
+    }
+}
+add_action('init', 'add_ability_caps_to_um_members');
+
+function enhance_um_comment_editor_role() {
+    $role = get_role('um_comment-editor');
+
+    if ($role) {
+        $role->add_cap('read');
+        $role->add_cap('moderate_comments');
+        $role->add_cap('edit_posts');
+        $role->add_cap('edit_others_posts');
+        $role->add_cap('delete_posts');
+        $role->add_cap('delete_others_posts');
+    }
+}
+add_action('init', 'enhance_um_comment_editor_role');
+
+function um_comment_editor_meta_caps($caps, $cap, $user_id, $args) {
+    if (in_array($cap, array('edit_comment', 'delete_comment', 'moderate_comment'))) {
+        $user = get_userdata($user_id);
+        if (in_array('um_comment-editor', (array) $user->roles)) {
+            $caps = array('moderate_comments');
+        }
+    }
+    return $caps;
+}
+add_filter('map_meta_cap', 'um_comment_editor_meta_caps', 10, 4);
