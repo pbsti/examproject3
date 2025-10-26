@@ -28,40 +28,81 @@ add_action('init', 'plp_register_strings');
 
 
 function handle_testimonial_submission() {
-    if (
-        !isset($_POST['testimonial_nonce']) ||
-        !wp_verify_nonce($_POST['testimonial_nonce'], 'submit_testimonial_action')
-    ) {
-        wp_die('Security check failed');
+    if ( ! is_user_logged_in() ) {
+        $login_url    = wp_login_url( wp_get_referer() ?: home_url() );
+        $register_url = wp_registration_url();
+        wp_die(
+            sprintf(
+                'You must be logged in to submit a testimonial. <a href="%1$s">Log in</a> or <a href="%2$s">Register</a>.',
+                esc_url( $login_url ),
+                esc_url( $register_url )
+            ),
+            'Login required',
+            array( 'response' => 403 )
+        );
     }
 
-    $name = sanitize_text_field($_POST['testimonial_name']);
-    $rating = intval($_POST['testimonial_rating']);
-    $content = sanitize_textarea_field($_POST['testimonial_content']);
+    if (
+        ! isset( $_POST['testimonial_nonce'] ) ||
+        ! wp_verify_nonce( $_POST['testimonial_nonce'], 'submit_testimonial_action' )
+    ) {
+        wp_die( 'Security check failed', 'Invalid request', array( 'response' => 403 ) );
+    }
 
-    $testimonial_id = wp_insert_post([
-        'post_type'   => 'testimonial',
-        'post_title'  => $name,
-        'post_content'=> $content,
-        'post_status' => 'pending'
-    ]);
+    $name    = isset( $_POST['testimonial_name'] ) ? sanitize_text_field( wp_strip_all_tags( $_POST['testimonial_name'] ) ) : '';
+    $rating  = isset( $_POST['testimonial_rating'] ) ? intval( $_POST['testimonial_rating'] ) : 5;
+    $rating  = min( 5, max( 1, $rating ) );
+    $content = isset( $_POST['testimonial_content'] ) ? wp_kses_post( $_POST['testimonial_content'] ) : '';
 
-    if ($testimonial_id) {
-        update_field('testimonial_name', $name, $testimonial_id);
-        update_field('testimonial_rating', $rating, $testimonial_id);
+    $current_user = wp_get_current_user();
 
-        if (!empty($_FILES['testimonial_photo']['name'])) {
-            require_once(ABSPATH . 'wp-admin/includes/image.php');
-            require_once(ABSPATH . 'wp-admin/includes/file.php');
-            require_once(ABSPATH . 'wp-admin/includes/media.php');
-            $attachment_id = media_handle_upload('testimonial_photo', $testimonial_id);
-            if (!is_wp_error($attachment_id)) {
-                update_field('testimonial_photo', $attachment_id, $testimonial_id);
+    $testimonial_id = wp_insert_post( array(
+        'post_type'    => 'testimonial',
+        'post_title'   => $name ?: 'Anonymous',
+        'post_content' => $content,
+        'post_status'  => 'pending',
+        'post_author'  => $current_user->ID,
+    ) );
+
+    if ( $testimonial_id && ! is_wp_error( $testimonial_id ) ) {
+        if ( function_exists( 'update_field' ) ) {
+            update_field( 'testimonial_name', $name, $testimonial_id );
+            update_field( 'testimonial_rating', $rating, $testimonial_id );
+        } else {
+            update_post_meta( $testimonial_id, 'testimonial_name', $name );
+            update_post_meta( $testimonial_id, 'testimonial_rating', $rating );
+        }
+
+        if ( ! empty( $_FILES['testimonial_photo']['name'] ) && ! empty( $_FILES['testimonial_photo']['tmp_name'] ) ) {
+            $file = $_FILES['testimonial_photo'];
+            $max_file_size = 1 * 1024 * 1024; // 1MB
+
+            if ( $file['size'] <= $max_file_size ) {
+                $check = wp_check_filetype_and_ext( $file['tmp_name'], $file['name'] );
+                $allowed_exts = array( 'jpg', 'jpeg', 'png', 'gif', 'webp' );
+
+                if ( ! empty( $check['ext'] ) && in_array( strtolower( $check['ext'] ), $allowed_exts, true ) && strpos( $check['type'], 'image/' ) === 0 ) {
+                    require_once ABSPATH . 'wp-admin/includes/image.php';
+                    require_once ABSPATH . 'wp-admin/includes/file.php';
+                    require_once ABSPATH . 'wp-admin/includes/media.php';
+
+                    $attachment_id = media_handle_upload( 'testimonial_photo', $testimonial_id );
+
+                    if ( ! is_wp_error( $attachment_id ) ) {
+                        if ( function_exists( 'update_field' ) ) {
+                            update_field( 'testimonial_photo', $attachment_id, $testimonial_id );
+                        } else {
+                            set_post_thumbnail( $testimonial_id, $attachment_id );
+                            update_post_meta( $testimonial_id, 'testimonial_photo', $attachment_id );
+                        }
+                    }
+                }
             }
         }
     }
 
-    wp_redirect(add_query_arg('testimonial', 'success', wp_get_referer()));
+    $redirect = wp_get_referer() ? wp_get_referer() : home_url();
+    wp_safe_redirect( add_query_arg( 'testimonial', 'success', $redirect ) );
     exit;
 }
 
@@ -72,8 +113,6 @@ add_action('admin_post_submit_testimonial', 'handle_testimonial_submission');
 function handle_food_survey_submission() {
     if (isset($_POST['survey_submit'])) {
 
-
-        print_r($_POST); // For debugging purposes
         $post_id = wp_insert_post(array(
             'post_type'   => 'survey_response',
             'post_status' => 'publish',
@@ -81,13 +120,11 @@ function handle_food_survey_submission() {
         ));
 
         if ($post_id) {
-            // Simple fields
             update_post_meta($post_id, 'gender', sanitize_text_field($_POST['survey_gender']));
             update_post_meta($post_id, 'age', sanitize_text_field($_POST['survey_age']));
             update_post_meta($post_id, 'health_importance', sanitize_text_field($_POST['survey_healthy_eating']));
             update_post_meta($post_id, 'food_waste_frequency', sanitize_text_field($_POST['survey_food_waste_frequency']));
 
-            // Checkbox fields
             if (!empty($_POST['survey_health_motives'])) {
                 $health_motives = array_map('sanitize_text_field', $_POST['survey_health_motives']);
                 update_post_meta($post_id, 'health_motives', $health_motives);
@@ -108,7 +145,6 @@ function handle_food_survey_submission() {
                 update_post_meta($post_id, 'message_types', $message_types);
             }
 
-            // Thank you
             wp_redirect(add_query_arg('survey_submitted', 'true', get_permalink()));
             exit;
         }
