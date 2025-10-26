@@ -124,6 +124,7 @@ function yumgo_register_testimonial_cpt() {
             'singular_name' => 'Testimonial'
         ],
         'public' => true,
+        'capability_type' => 'testimonial',
         'has_archive' => false,
         'supports' => ['title', 'editor', 'thumbnail'],
     ]);
@@ -153,6 +154,11 @@ function add_ability_caps_to_um_members() {
         $role->add_cap('edit_others_abilities');
         $role->add_cap('publish_abilities');
         $role->add_cap('delete_abilities');
+
+        $role->add_cap('edit_responses');
+        $role->add_cap('edit_others_responses');
+        $role->add_cap('publish_responses');
+        $role->add_cap('delete_responses');
     }
 }
 add_action('init', 'add_ability_caps_to_um_members');
@@ -181,3 +187,31 @@ function um_comment_editor_meta_caps($caps, $cap, $user_id, $args) {
     return $caps;
 }
 add_filter('map_meta_cap', 'um_comment_editor_meta_caps', 10, 4);
+
+function yumgo_grant_admin_testimonial_caps() {
+    $role = get_role('administrator');
+    if (! $role) {
+        return;
+    }
+
+    $caps = [
+        'edit_testimonial',
+        'read_testimonial',
+        'delete_testimonial',
+        'edit_testimonials',
+        'edit_others_testimonials',
+        'publish_testimonials',
+        'read_private_testimonials',
+        'delete_testimonials',
+        'delete_private_testimonials',
+        'delete_published_testimonials',
+        'delete_others_testimonials',
+        'edit_private_testimonials',
+        'edit_published_testimonials',
+    ];
+
+    foreach ($caps as $cap) {
+        $role->add_cap($cap);
+    }
+}
+add_action('init', 'yumgo_grant_admin_testimonial_caps');
