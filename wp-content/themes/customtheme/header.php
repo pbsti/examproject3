@@ -48,7 +48,7 @@
           <a href="<?php echo esc_url(get_permalink(get_page_by_path('yumgo-blogs'))); ?>">BLOGS</a>
         </li>
         <li class="text-base font-bold">
-          <a href="<?php echo esc_url(get_permalink(get_page_by_path(''))); ?>">LOG IN</a>
+          <a href="<?php echo esc_url(get_permalink(get_page_by_path('login'))); ?>">LOG IN</a>
         </li>
         <li class="text-base font-bold">
           <a href="<?php echo esc_url(get_permalink(get_page_by_path(''))); ?>">CART</a>

@@ -142,137 +142,139 @@ Template Name: Sustainability Page
 
         <?php endwhile; ?>
     <?php endif; ?>
-
-    <!-- Survey Form -->
     
-    <main class="px-8 py-8 max-w-7xl mx-auto bg-white rounded-2xl shadow-md">
-    <h2 class="p-6 pb-2 text-5xl font-bold text-black">
-        Healthy Eating & Food Waste Awareness Survey
-    </h2>
-    <form method="post" class="p-6">
-        <div class="mb-4">
-            <label class="block font-bold text-black-700 mb-1">1. What is your gender?</label>
-            <select name="survey_gender" required
-                class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500">
-                <option value="">Select...</option>
-                <option value="Woman">Woman</option>
-                <option value="Man">Man</option>
-                <option value="Prefer not to say">Prefer not to say</option>
-            </select>
-        </div>
+    <section class="px-8 py-8 max-w-7xl mx-auto bg-white rounded-2xl shadow-md mb-8">
 
-        <div class="mb-4">
-            <label class="block font-bold text-black-700 mb-1">2. How old are you?</label>
-            <input type="number" name="survey_age" required
-                class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500">
-        </div>
+        <h2 class="p-6 pb-2 text-5xl font-bold text-black">
+            Healthy Eating & Food Waste Awareness Survey
+        </h2>
 
-        <div class="mb-4">
-            <label class="block font-bold text-black-700 mb-1">3. How important is healthy eating in your daily life?</label>
-            <select name="survey_healthy_eating" required
-                class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500">
-                <option value="">Select...</option>
-                <option value="Very important">Very important</option>
-                <option value="Somewhat important">Somewhat important</option>
-                <option value="Not very important">Not very important</option>
-                <option value="Not important at all">Not important at all</option>
-            </select>
-        </div>
-
-        <div class="mb-4">
-            <label class="block font-bold text-black-700 mb-2">4. What usually motivates you to eat healthily?</label>
-            <div class="space-y-1">
-                <?php
-                $health_motives = [
-                    'Physical wellbeing',
-                    'Appearance/fitness',
-                    'Environmental impact',
-                    'Saving money',
-                    'Family influence',
-                    'Other'
-                ];
-                foreach ($health_motives as $motive) {
-                    echo '<label class="flex items-center"><input type="checkbox" name="survey_health_motives[]" value="' . $motive . '" class="mr-2">' . $motive . '</label>';
-                }
-                ?>
+        <form method="post" class="p-6">
+            <div class="mb-4">
+                <label class="block font-bold text-black-700 mb-1">1. What is your gender?</label>
+                <select name="survey_gender" required
+                    class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500">
+                    <option value="">Select...</option>
+                    <option value="Woman">Woman</option>
+                    <option value="Man">Man</option>
+                    <option value="Prefer not to say">Prefer not to say</option>
+                </select>
             </div>
-        </div>
 
-        <div class="mb-4">
-            <label class="block font-bold text-black-700 mb-1">5. How often do you throw away edible food at home?</label>
-            <select name="survey_food_waste_frequency" required
-                class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-[#DCE896]-500 focus:border-[#DCE896]-500">
-                <option value="">Select...</option>
-                <option value="Never">Never</option>
-                <option value="Rarely">Rarely</option>
-                <option value="Sometimes">Sometimes</option>
-                <option value="Often">Often</option>
-            </select>
-        </div>
-
-        <div class="mb-4">
-            <label class="block font-bold text-black-700 mb-2">6. What are the main reasons you end up wasting food?</label>
-            <div class="space-y-1">
-                <?php
-                $waste_reasons = [
-                    'Buying too much',
-                    'Forgetting what’s in the fridge',
-                    'Cooking too much',
-                    'Food spoiling before use',
-                    'Confusion about expiry dates'
-                ];
-                foreach ($waste_reasons as $reason) {
-                    echo '<label class="flex items-center"><input type="checkbox" name="survey_food_waste_reasons[]" value="' . $reason . '" class="mr-2">' . $reason . '</label>';
-                }
-                ?>
+            <div class="mb-4">
+                <label class="block font-bold text-black-700 mb-1">2. How old are you?</label>
+                <input type="number" name="survey_age" required
+                    class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500">
             </div>
-        </div>
 
-        <div class="mb-4">
-            <label class="block font-bold text-black-700 mb-2">7. What would most motivate you to reduce food waste?</label>
-            <div class="space-y-1">
-                <?php
-                $waste_motives = [
-                    'Saving money',
-                    'Helping the environment',
-                    'Feeling responsible',
-                    'Social pressure (family, friends)',
-                    'Better meal planning'
-                ];
-                foreach ($waste_motives as $motive) {
-                    echo '<label class="flex items-center"><input type="checkbox" name="survey_food_waste_motives[]" value="' . $motive . '" class="mr-2">' . $motive . '</label>';
-                }
-                ?>
+            <div class="mb-4">
+                <label class="block font-bold text-black-700 mb-1">3. How important is healthy eating in your daily life?</label>
+                <select name="survey_healthy_eating" required
+                    class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500">
+                    <option value="">Select...</option>
+                    <option value="Very important">Very important</option>
+                    <option value="Somewhat important">Somewhat important</option>
+                    <option value="Not very important">Not very important</option>
+                    <option value="Not important at all">Not important at all</option>
+                </select>
             </div>
-        </div>
 
-        <div class="mb-6">
-            <label class="block font-bold text-black-700 mb-2">8. Which type of messages would make you more likely to waste less food?</label>
-            <div class="space-y-1">
-                <?php
-                $message_types = [
-                    'Financial savings',
-                    'Environmental impact',
-                    'Health benefits',
-                    'Moral responsibility',
-                    'Community/collective action'
-                ];
-                foreach ($message_types as $type) {
-                    echo '<label class="flex items-center"><input type="checkbox" name="survey_message_types[]" value="' . $type . '" class="mr-2">' . $type . '</label>';
-                }
-                ?>
+            <div class="mb-4">
+                <label class="block font-bold text-black-700 mb-2">4. What usually motivates you to eat healthily?</label>
+                <div class="space-y-1">
+                    <?php
+                    $health_motives = [
+                        'Physical wellbeing',
+                        'Appearance/fitness',
+                        'Environmental impact',
+                        'Saving money',
+                        'Family influence',
+                        'Other'
+                    ];
+                    foreach ($health_motives as $motive) {
+                        echo '<label class="flex items-center"><input type="checkbox" name="survey_health_motives[]" value="' . $motive . '" class="mr-2">' . $motive . '</label>';
+                    }
+                    ?>
+                </div>
             </div>
-        </div>
 
-        <div class="text-center pt-4">
-            <input type="submit" name="survey_submit" value="Submit Survey"
-                class="flex self-center bg-[#DCE896] text-black font-bold px-8 py-2 rounded shadow hover:bg-[#ED6543] transition">
-        </div>
-    </form>
+            <div class="mb-4">
+                <label class="block font-bold text-black-700 mb-1">5. How often do you throw away edible food at home?</label>
+                <select name="survey_food_waste_frequency" required
+                    class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-[#DCE896]-500 focus:border-[#DCE896]-500">
+                    <option value="">Select...</option>
+                    <option value="Never">Never</option>
+                    <option value="Rarely">Rarely</option>
+                    <option value="Sometimes">Sometimes</option>
+                    <option value="Often">Often</option>
+                </select>
+            </div>
 
-    <?php if (isset($_GET['survey_submitted']) && $_GET['survey_submitted'] == 'true') : ?>
-        <p class="mb-4 text-[#ED6543] font-bold text-center">Thank you for completing our survey!</p>
-    <?php endif; ?>
+            <div class="mb-4">
+                <label class="block font-bold text-black-700 mb-2">6. What are the main reasons you end up wasting food?</label>
+                <div class="space-y-1">
+                    <?php
+                    $waste_reasons = [
+                        'Buying too much',
+                        'Forgetting what’s in the fridge',
+                        'Cooking too much',
+                        'Food spoiling before use',
+                        'Confusion about expiry dates'
+                    ];
+                    foreach ($waste_reasons as $reason) {
+                        echo '<label class="flex items-center"><input type="checkbox" name="survey_food_waste_reasons[]" value="' . $reason . '" class="mr-2">' . $reason . '</label>';
+                    }
+                    ?>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="block font-bold text-black-700 mb-2">7. What would most motivate you to reduce food waste?</label>
+                <div class="space-y-1">
+                    <?php
+                    $waste_motives = [
+                        'Saving money',
+                        'Helping the environment',
+                        'Feeling responsible',
+                        'Social pressure (family, friends)',
+                        'Better meal planning'
+                    ];
+                    foreach ($waste_motives as $motive) {
+                        echo '<label class="flex items-center"><input type="checkbox" name="survey_food_waste_motives[]" value="' . $motive . '" class="mr-2">' . $motive . '</label>';
+                    }
+                    ?>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <label class="block font-bold text-black-700 mb-2">8. Which type of messages would make you more likely to waste less food?</label>
+                <div class="space-y-1">
+                    <?php
+                    $message_types = [
+                        'Financial savings',
+                        'Environmental impact',
+                        'Health benefits',
+                        'Moral responsibility',
+                        'Community/collective action'
+                    ];
+                    foreach ($message_types as $type) {
+                        echo '<label class="flex items-center"><input type="checkbox" name="survey_message_types[]" value="' . $type . '" class="mr-2">' . $type . '</label>';
+                    }
+                    ?>
+                </div>
+            </div>
+
+            <div class="text-center pt-4">
+                <input type="submit" name="survey_submit" value="Submit Survey"
+                    class="flex self-center bg-[#DCE896] text-black font-bold px-8 py-2 rounded shadow hover:bg-[#ED6543] transition">
+            </div>
+        </form>
+
+        <?php if (isset($_GET['survey_submitted']) && $_GET['survey_submitted'] == 'true') : ?>
+            <p class="mb-4 text-[#ED6543] font-bold text-center">Thank you for completing our survey!</p>
+        <?php endif; ?>
+    </section>
+
 </main>
 
 <?php get_footer(); ?>

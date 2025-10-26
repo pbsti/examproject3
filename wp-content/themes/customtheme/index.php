@@ -147,23 +147,30 @@
 
             <section class="max-w-2xl px-16 py-8 max-w-7xl mx-auto">
                 <h3 class="text-2xl font-bold mb-4 text-black">Submit your testimonial</h3>
-                <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="POST" enctype="multipart/form-data" class="bg-white p-8 rounded-xl shadow space-y-4 max-w-lg mx-auto">
-                    <input type="hidden" name="action" value="submit_testimonial">
-                    <?php wp_nonce_field('submit_testimonial_action', 'testimonial_nonce'); ?>
-                    <label for="testimonial_name" class="block font-bold mb-1">Name</label>
-                    <input type="text" name="testimonial_name" id="testimonial_name" required class="w-full border p-2 rounded mb-4" />
 
-                    <label for="testimonial_rating" class="block font-bold mb-1">Rating (1-5)</label>
-                    <input type="number" name="testimonial_rating" id="testimonial_rating" min="1" max="5" required class="w-full border p-2 rounded mb-4" />
+                <?php if ( is_user_logged_in() ): ?>
+                    <form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="POST" enctype="multipart/form-data" class="bg-white p-8 rounded-xl shadow space-y-4 max-w-lg mx-auto">
+                        <input type="hidden" name="action" value="submit_testimonial">
+                        <?php wp_nonce_field( 'submit_testimonial_action', 'testimonial_nonce' ); ?>
+                        <label for="testimonial_name" class="block font-bold mb-1">Name</label>
+                        <input type="text" name="testimonial_name" id="testimonial_name" required class="w-full border p-2 rounded mb-4" />
+                        <label for="testimonial_rating" class="block font-bold mb-1">Rating (1-5)</label>
+                        <input type="number" name="testimonial_rating" id="testimonial_rating" min="1" max="5" required class="w-full border p-2 rounded mb-4" />
+                        <label for="testimonial_photo" class="block font-bold mb-1">Profile picture</label>
+                        <input type="file" name="testimonial_photo" id="testimonial_photo" accept="image/*" class="w-full border p-2 rounded mb-4" />
+                        <label for="testimonial_content" class="block font-bold mb-1">Testimonial</label>
+                        <textarea name="testimonial_content" id="testimonial_content" required class="w-full border p-2 rounded mb-4"></textarea>
+                        <input type="submit" value="Send" class="bg-orange-400 text-white font-bold px-6 py-2 rounded hover:bg-orange-500 transition" />
+                    </form>
+                <?php else: ?>
+                    <p class="mt-4 text-black">
+                        You must be logged in to submit a testimonial.
+                        <a href="<?php echo esc_url( wp_login_url( get_permalink() ) ); ?>" class="text-blue-600 underline">Log in</a>
+                        or
+                        <a href="<?php echo esc_url( wp_registration_url() ); ?>" class="text-blue-600 underline">Register</a>
+                    </p>
+                <?php endif; ?>
 
-                    <label for="testimonial_photo" class="block font-bold mb-1">Profile picture</label>
-                    <input type="file" name="testimonial_photo" id="testimonial_photo" accept="image/*" class="w-full border p-2 rounded mb-4" />
-
-                    <label for="testimonial_content" class="block font-bold mb-1">Testimonial</label>
-                    <textarea name="testimonial_content" id="testimonial_content" required class="w-full border p-2 rounded mb-4"></textarea>
-
-                    <input type="submit" value="Send" class="bg-orange-400 text-white font-bold px-6 py-2 rounded hover:bg-orange-500 transition" />
-                </form>
                 <?php
                 if (isset($_GET['testimonial']) && $_GET['testimonial'] === 'success') {
                     echo '<p class="mt-4 text-green-600 font-bold">Thank you for your testimonial! It will appear after review.</p>';
