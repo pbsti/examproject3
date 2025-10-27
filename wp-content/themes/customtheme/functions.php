@@ -315,3 +315,11 @@ function shop_enable_woocommerce_support() {
 }
 add_action('after_setup_theme', 'shop_enable_woocommerce_support');
 
+function rename_dokan_vendor_to_restaurant( $translated_text ) {
+    $translated_text = str_ireplace( 'Store', 'Restaurant', $translated_text );
+    $translated_text = str_ireplace( 'store', 'restaurant', $translated_text );
+    $translated_text = str_ireplace( 'Vendor', 'Restaurant', $translated_text );
+    $translated_text = str_ireplace( 'vendor', 'restaurant', $translated_text );
+    return $translated_text;
+}
+add_filter( 'gettext', 'rename_dokan_vendor_to_restaurant' );
