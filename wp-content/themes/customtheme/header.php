@@ -32,7 +32,7 @@
   <nav class="flex items-center justify-between px-4 h-16">
 
     <a href="<?php echo esc_url(home_url('/')); ?>" class="flex-shrink-0">
-      <img src="<?php echo get_template_directory_uri() . '/css/img/YumGoWide.png' ?>" alt="Logo" class="h-10">
+      <img src="<?php echo get_template_directory_uri() . '/css/img/YumGoWide.png' ?>" alt="Logo" class="h-10 w-auto site-logo">
     </a>
 
     <button id="menu-toggle" class="md:hidden text-3xl focus:outline-none" aria-label="Open main menu">
