@@ -27,7 +27,7 @@
                 class="appearance-none border border-gray-300 px-6 py-3 bg-transparent text-black text-base pr-10 focus:outline-none focus:ring-2 focus:ring-[#DCE896] min-w-76 cursor-pointer"
                 onchange="if(this.value) window.location.href=this.value;">
                 <option value="<?php echo esc_url(get_permalink(get_page_by_path('yumgo-blogs'))); ?>" <?php if (!$selected_cat_slug) echo 'selected'; ?>>
-                  All
+                  <?php pll_e("All categories")?>
                 </option>
                 <?php foreach ($all_categories as $cat): ?>
                   <option value="<?php echo esc_url(get_category_link($cat->term_id)); ?>" <?php if ($current_category && $current_category->term_id === $cat->term_id) echo 'selected'; ?>>
