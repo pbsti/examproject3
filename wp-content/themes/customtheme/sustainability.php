@@ -147,40 +147,40 @@ Template Name: Sustainability Page
     
     <main class="px-8 py-8 max-w-7xl mx-auto bg-white rounded-2xl shadow-md">
     <h2 class="p-6 pb-2 text-5xl font-bold text-black">
-        Healthy Eating & Food Waste Awareness Survey
+        <?php pll_e("Survey Title")?>
     </h2>
     <form method="post" class="p-6">
         <div class="mb-4">
-            <label class="block font-bold text-black-700 mb-1">1. What is your gender?</label>
+            <label class="block font-bold text-black-700 mb-1"><?php pll_e("Gender Q")?></label>
             <select name="survey_gender" required
                 class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500">
-                <option value="">Select...</option>
-                <option value="Woman">Woman</option>
-                <option value="Man">Man</option>
-                <option value="Prefer not to say">Prefer not to say</option>
+                <option value=""><?php pll_e("Select Gender")?></option>
+                <option value="Woman"><?php pll_e("Woman")?></option>
+                <option value="Man"><?php pll_e("Man")?></option>
+                <option value="Prefer not to say"><?php pll_e("Other")?></option>
             </select>
         </div>
 
         <div class="mb-4">
-            <label class="block font-bold text-black-700 mb-1">2. How old are you?</label>
+            <label class="block font-bold text-black-700 mb-1"><?php pll_e("Age Q")?></label>
             <input type="number" name="survey_age" required
                 class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500">
         </div>
 
         <div class="mb-4">
-            <label class="block font-bold text-black-700 mb-1">3. How important is healthy eating in your daily life?</label>
+            <label class="block font-bold text-black-700 mb-1"><?php pll_e("How important")?></label>
             <select name="survey_healthy_eating" required
                 class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500">
-                <option value="">Select...</option>
-                <option value="Very important">Very important</option>
-                <option value="Somewhat important">Somewhat important</option>
-                <option value="Not very important">Not very important</option>
-                <option value="Not important at all">Not important at all</option>
+                <option value=""><?php pll_e("Select")?></option>
+                <option value="Very important"><?php pll_e("Very important")?></option>
+                <option value="Somewhat important"><?php pll_e("Somewhat important")?></option>
+                <option value="Not very important"><?php pll_e("Not very important")?></option>
+                <option value="Not important at all"><?php pll_e("Not important at all")?></option>
             </select>
         </div>
 
         <div class="mb-4">
-            <label class="block font-bold text-black-700 mb-2">4. What usually motivates you to eat healthily?</label>
+            <label class="block font-bold text-black-700 mb-2"><?php pll_e("Motivations")?></label>
             <div class="space-y-1">
                 <?php
                 $health_motives = [
@@ -191,63 +191,73 @@ Template Name: Sustainability Page
                     'Family influence',
                     'Other'
                 ];
+
                 foreach ($health_motives as $motive) {
-                    echo '<label class="flex items-center"><input type="checkbox" name="survey_health_motives[]" value="' . $motive . '" class="mr-2">' . $motive . '</label>';
+                    $translated = function_exists('pll__') ? pll__($motive) : $motive;
+                    $val = esc_attr($translated);
+                    $label = esc_html($translated);
+                    echo '<label class="flex items-center"><input type="checkbox" name="survey_health_motives[]" value="' . $val . '" class="mr-2">' . $label . '</label>';
                 }
                 ?>
             </div>
         </div>
 
         <div class="mb-4">
-            <label class="block font-bold text-black-700 mb-1">5. How often do you throw away edible food at home?</label>
+            <label class="block font-bold text-black-700 mb-1"><?php pll_e("How often")?></label>
             <select name="survey_food_waste_frequency" required
                 class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-[#DCE896]-500 focus:border-[#DCE896]-500">
-                <option value="">Select...</option>
-                <option value="Never">Never</option>
-                <option value="Rarely">Rarely</option>
-                <option value="Sometimes">Sometimes</option>
-                <option value="Often">Often</option>
+                <option value=""><?php pll_e("Select")?></option>
+                <option value="Never"><?php pll_e("Never")?>r</option>
+                <option value="Rarely"><?php pll_e("Rarely")?></option>
+                <option value="Sometimes"><?php pll_e("Sometimes")?></option>
+                <option value="Often"><?php pll_e("Often")?></option>
             </select>
         </div>
 
         <div class="mb-4">
-            <label class="block font-bold text-black-700 mb-2">6. What are the main reasons you end up wasting food?</label>
+            <label class="block font-bold text-black-700 mb-2"><?php pll_e("Main reasons")?></label>
             <div class="space-y-1">
                 <?php
                 $waste_reasons = [
                     'Buying too much',
-                    'Forgetting what’s in the fridge',
+                    'Forgetting what is in the fridge',
                     'Cooking too much',
                     'Food spoiling before use',
                     'Confusion about expiry dates'
                 ];
-                foreach ($waste_reasons as $reason) {
-                    echo '<label class="flex items-center"><input type="checkbox" name="survey_food_waste_reasons[]" value="' . $reason . '" class="mr-2">' . $reason . '</label>';
+                 foreach ($waste_reasons as $reason) {
+                    $translated = function_exists('pll__') ? pll__($reason) : $reason;
+                    $val = esc_attr($translated);
+                    $label = esc_html($translated);
+                    echo '<label class="flex items-center"><input type="checkbox" name="survey_food_waste_reasons[]" value="' . $val . '" class="mr-2">' . $label . '</label>';
                 }
                 ?>
             </div>
         </div>
 
         <div class="mb-4">
-            <label class="block font-bold text-black-700 mb-2">7. What would most motivate you to reduce food waste?</label>
+            <label class="block font-bold text-black-700 mb-2"><?php pll_e("Reduce food waste")?></label>
             <div class="space-y-1">
                 <?php
                 $waste_motives = [
-                    'Saving money',
+                    'Economic benefits',
                     'Helping the environment',
                     'Feeling responsible',
                     'Social pressure (family, friends)',
                     'Better meal planning'
                 ];
                 foreach ($waste_motives as $motive) {
-                    echo '<label class="flex items-center"><input type="checkbox" name="survey_food_waste_motives[]" value="' . $motive . '" class="mr-2">' . $motive . '</label>';
+                    $translated = function_exists('pll__') ? pll__($motive) : $motive;
+                    $val = esc_attr($translated);
+                    $label = esc_html($translated);
+                    echo '<label class="flex items-center"><input type="checkbox" name="survey_food_waste_motives[]" value="' . $val . '" class="mr-2">' . $label . '</label>';
                 }
                 ?>
             </div>
         </div>
 
         <div class="mb-6">
-            <label class="block font-bold text-black-700 mb-2">8. Which type of messages would make you more likely to waste less food?</label>
+            <label class="block font-bold text-black-700 mb-2"><?php pll_e("Message")?></label>
             <div class="space-y-1">
                 <?php
                 $message_types = [
@@ -258,20 +268,23 @@ Template Name: Sustainability Page
                     'Community/collective action'
                 ];
                 foreach ($message_types as $type) {
-                    echo '<label class="flex items-center"><input type="checkbox" name="survey_message_types[]" value="' . $type . '" class="mr-2">' . $type . '</label>';
+                   $translated = function_exists('pll__') ? pll__($type) : $type;
+                   $val = esc_attr($translated);
+                   $label = esc_html($translated);
+                   echo '<label class="flex items-center"><input type="checkbox" name="survey_food_waste_motives[]" value="' . $val . '" class="mr-2">' . $label . '</label>';
                 }
                 ?>
             </div>
         </div>
 
         <div class="text-center pt-4">
-            <input type="submit" name="survey_submit" value="Submit Survey"
+            <input type="submit" name="survey_submit" value=<?php pll_e("Submit survey")?>
                 class="flex self-center bg-[#DCE896] text-black font-bold px-8 py-2 rounded shadow hover:bg-[#ED6543] transition">
         </div>
     </form>
 
     <?php if (isset($_GET['survey_submitted']) && $_GET['survey_submitted'] == 'true') : ?>
-        <p class="mb-4 text-[#ED6543] font-bold text-center">Thank you for completing our survey!</p>
+        <p class="mb-4 text-[#ED6543] font-bold text-center"><?php pll_e("Thank you survey")?></p>
     <?php endif; ?>
 </main>
 
