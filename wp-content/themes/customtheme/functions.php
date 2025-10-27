@@ -255,3 +255,9 @@ function yumgo_grant_admin_testimonial_caps() {
     }
 }
 add_action('init', 'yumgo_grant_admin_testimonial_caps');
+
+function shop_enable_woocommerce_support() {
+    add_theme_support('woocommerce');
+}
+add_action('after_setup_theme', 'shop_enable_woocommerce_support');
+
