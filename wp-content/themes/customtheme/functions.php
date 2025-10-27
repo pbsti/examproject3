@@ -22,6 +22,9 @@ function plp_register_strings() {
         pll_register_string('Date:', 'Date:');
         pll_register_string('Author:', 'Author:');
         pll_register_string('Leave a reply', 'Leave a reply');
+        pll_register_string('Sustainability', 'SUSTAINABILITY');
+        pll_register_string('Blogs', 'Blogs');
+
 }
 
 add_action('init', 'plp_register_strings');
