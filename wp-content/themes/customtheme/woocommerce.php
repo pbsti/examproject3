@@ -1,5 +1,7 @@
-<?php get_header();
+<?php get_header(); ?>
 
-    woocommerce_content();
+    <div class="container mx-auto px-4 py-8 max-w-5xl py-20">
+        <?php woocommerce_content(); ?>
+    </div>
 
-get_footer(); ?>
+<?php get_footer(); ?>
