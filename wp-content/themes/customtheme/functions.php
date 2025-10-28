@@ -188,10 +188,10 @@ function handle_food_survey_submission() {
         ));
 
         if ($post_id) {
-            update_post_meta($post_id, 'gender', sanitize_text_field($_POST['survey_gender']));
-            update_post_meta($post_id, 'age', sanitize_text_field($_POST['survey_age']));
-            update_post_meta($post_id, 'health_importance', sanitize_text_field($_POST['survey_healthy_eating']));
-            update_post_meta($post_id, 'food_waste_frequency', sanitize_text_field($_POST['survey_food_waste_frequency']));
+            update_field('survey_gender', sanitize_text_field($_POST['survey_gender']),$post_id);
+            update_field('survey_age', sanitize_text_field($_POST['survey_age']), $post_id);
+            update_field('survey_health_importance', sanitize_text_field($_POST['survey_healthy_eating']));
+            update_field('survey_food_waste_frequency', sanitize_text_field($_POST['survey_food_waste_frequency']), $post_id);
 
             if (!empty($_POST['survey_health_motives'])) {
                 $health_motives = array_map('sanitize_text_field', $_POST['survey_health_motives']);
@@ -218,7 +218,8 @@ function handle_food_survey_submission() {
         }
     }
 }
-add_action('init', 'handle_food_survey_submission');
+add_action('admin_post_nopriv_submit_food_survey', 'handle_food_survey_submission');
+add_action('admin_post_submit_food_survey', 'handle_food_survey_submission');
 
 
 function yumgo_register_testimonial_cpt() {

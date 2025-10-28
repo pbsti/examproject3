@@ -149,7 +149,7 @@ Template Name: Sustainability Page
     <h2 class="p-6 pb-2 text-5xl font-bold text-black">
         <?php pll_e("Survey Title")?>
     </h2>
-    <form method="post" class="p-6">
+    <form method="POST" class="p-6" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
         <div class="mb-4">
             <label class="block font-bold text-black-700 mb-1"><?php pll_e("Gender Q")?></label>
             <select name="survey_gender" required
