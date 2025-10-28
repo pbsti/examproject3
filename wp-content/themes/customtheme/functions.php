@@ -282,12 +282,9 @@ function um_comment_editor_meta_caps($caps, $cap, $user_id, $args) {
 }
 add_filter('map_meta_cap', 'um_comment_editor_meta_caps', 10, 4);
 
-function yumgo_grant_admin_testimonial_caps() {
-    $role = get_role('administrator');
-    if (! $role) {
-        return;
-    }
-
+function yumgo_grant_testimonial_caps() {
+    $roles = ['administrator', 'um_testimonials-checker'];
+    
     $caps = [
         'edit_testimonial',
         'read_testimonial',
@@ -304,11 +301,18 @@ function yumgo_grant_admin_testimonial_caps() {
         'edit_published_testimonials',
     ];
 
-    foreach ($caps as $cap) {
-        $role->add_cap($cap);
+    foreach ($roles as $role_name) {
+        $role = get_role($role_name);
+        if (! $role) {
+            continue;
+        }
+
+        foreach ($caps as $cap) {
+            $role->add_cap($cap);
+        }
     }
 }
-add_action('init', 'yumgo_grant_admin_testimonial_caps');
+add_action('init', 'yumgo_grant_testimonial_caps');
 
 function shop_enable_woocommerce_support() {
     add_theme_support('woocommerce');
