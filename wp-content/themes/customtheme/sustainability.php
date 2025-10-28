@@ -279,7 +279,7 @@ Template Name: Sustainability Page
         </div>
 
         <div class="text-center pt-4">
-            <input type="submit" name="survey_submit" value=<?php pll_e("Submit survey")?>
+            <input type="submit" value=<?php pll_e("Submit survey")?>
                 class="flex self-center bg-[#DCE896] text-black font-bold px-8 py-2 rounded shadow hover:bg-[#ED6543] transition">
         </div>
     </form>

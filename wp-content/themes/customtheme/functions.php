@@ -217,9 +217,9 @@ function handle_food_survey_submission() {
 
             wp_safe_redirect(add_query_arg('survey_submitted', 'true', wp_get_referer()));
             exit;
-        }
+        }  
+    }
 }
-
 add_action('admin_post_nopriv_submit_food_survey', 'handle_food_survey_submission');
 add_action('admin_post_submit_food_survey', 'handle_food_survey_submission');
 
