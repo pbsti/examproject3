@@ -8,8 +8,8 @@
                         <img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>" class="w-full object-cover" loading="lazy" />
                     <?php endif; ?>
                     <div class="hidden md:flex items-center justify-center absolute top-2/3 left-1/2 md:left-6/11 text-center gap-10 px-4 lg:ml-22">
-                        <a href="#vendors" class="bg-yellow-300 text-lg text-black font-bold px-6 py-2 rounded shadow hover:bg-yellow-400 transition">Meet our vendors</a>
-                        <a href="#about" class="bg-yellow-200 text-lg text-black font-bold px-6 py-2 rounded shadow hover:bg-yellow-300 transition">About us</a>
+                        <a href="#vendors" class="bg-yellow-300 text-lg text-black font-bold px-6 py-2 rounded shadow hover:bg-yellow-400 transition"><?php pll_e("Meet our vendors")?></a>
+                        <a href="#about" class="bg-yellow-200 text-lg text-black font-bold px-6 py-2 rounded shadow hover:bg-yellow-300 transition"><?php pll_e("About us")?></a>
                     </div>
             </section>
 
@@ -146,28 +146,28 @@
             </section>
 
             <section class="max-w-2xl px-16 py-8 max-w-7xl mx-auto">
-                <h3 class="text-2xl font-bold mb-4 text-black">Submit your testimonial</h3>
+                <h3 class="text-2xl font-bold mb-4 text-black"><?php pll_e("Submit")?></h3>
 
                 <?php if ( is_user_logged_in() ): ?>
                     <form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="POST" enctype="multipart/form-data" class="bg-white p-8 rounded-xl shadow space-y-4 max-w-lg mx-auto">
                         <input type="hidden" name="action" value="submit_testimonial">
                         <?php wp_nonce_field( 'submit_testimonial_action', 'testimonial_nonce' ); ?>
-                        <label for="testimonial_name" class="block font-bold mb-1">Name</label>
+                        <label for="testimonial_name" class="block font-bold mb-1"><?php pll_e("Name")?></label>
                         <input type="text" name="testimonial_name" id="testimonial_name" required class="w-full border p-2 rounded mb-4" />
-                        <label for="testimonial_rating" class="block font-bold mb-1">Rating (1-5)</label>
+                        <label for="testimonial_rating" class="block font-bold mb-1"><?php pll_e("Rating")?></label>
                         <input type="number" name="testimonial_rating" id="testimonial_rating" min="1" max="5" required class="w-full border p-2 rounded mb-4" />
-                        <label for="testimonial_photo" class="block font-bold mb-1">Profile picture</label>
+                        <label for="testimonial_photo" class="block font-bold mb-1"><?php pll_e("Photo")?></label>
                         <input type="file" name="testimonial_photo" id="testimonial_photo" accept="image/*" class="w-full border p-2 rounded mb-4" />
-                        <label for="testimonial_content" class="block font-bold mb-1">Testimonial</label>
+                        <label for="testimonial_content" class="block font-bold mb-1"><?php pll_e("Text")?></label>
                         <textarea name="testimonial_content" id="testimonial_content" required class="w-full border p-2 rounded mb-4"></textarea>
-                        <input type="submit" value="Send" class="bg-orange-400 text-white font-bold px-6 py-2 rounded hover:bg-orange-500 transition" />
+                        <input type="submit" value=<?php pll_e("Button")?> class="bg-orange-400 text-white font-bold px-6 py-2 rounded hover:bg-orange-500 transition" />
                     </form>
                 <?php else: ?>
                     <p class="mt-4 text-black">
-                        You must be logged in to submit a testimonial.
-                        <a href="<?php echo esc_url( wp_login_url( get_permalink() ) ); ?>" class="text-blue-600 underline">Log in</a>
+                        <?php pll_e("Submition")?>:
+                        <a href="<?php echo esc_url( wp_login_url( get_permalink() ) ); ?>" class="text-blue-600 underline"><?php pll_e("Log In")?></a>
                         or
-                        <a href="<?php echo esc_url( wp_registration_url() ); ?>" class="text-blue-600 underline">Register</a>
+                        <a href="<?php echo esc_url( wp_registration_url() ); ?>" class="text-blue-600 underline"><?php pll_e("Register")?>:</a>
                     </p>
                 <?php endif; ?>
 

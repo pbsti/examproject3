@@ -24,6 +24,14 @@ function plp_register_strings() {
         pll_register_string('Leave a reply', 'Leave a reply');
         pll_register_string('Sustainability', 'SUSTAINABILITY');
         pll_register_string('Blogs', 'Blogs');
+        pll_register_string('Testimonial', 'Submit');
+        pll_register_string('Testimonial', 'Name');
+        pll_register_string('Testimonial', 'Rating');
+        pll_register_string('Testimonial', 'Photo');
+        pll_register_string('Testimonial', 'Text');
+        pll_register_string('Testimonial', 'Button');
+        pll_register_string('Testimonial', 'Submition');
+        pll_register_string('Testimonial', 'Register');
         pll_register_string('All categories', 'All categories');
         pll_register_string('Survey Title', 'Survey Title');
         pll_register_string('Gender Q', 'Gender Q');
@@ -79,6 +87,8 @@ function plp_register_strings() {
         pll_register_string('Message', 'Community/collective action');
         pll_register_string('Submit survey', 'Submit survey');
         pll_register_string('Submit survey', 'Thank you survey');
+        pll_register_string('Home', 'Meet our vendors');
+        pll_register_string('Home', 'About us');
 
 }
 
