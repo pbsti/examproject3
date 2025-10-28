@@ -179,7 +179,9 @@ add_action('admin_post_submit_testimonial', 'handle_testimonial_submission');
 
 // Food Survey
 function handle_food_survey_submission() {
-    if (isset($_POST['survey_submit'])) {
+    if (!isset($_POST['action']) || $_POST['action'] !== 'submit_food_survey') {
+        return;
+    }
 
         $post_id = wp_insert_post(array(
             'post_type'   => 'survey_response',
@@ -213,11 +215,11 @@ function handle_food_survey_submission() {
                 update_field('survey_message_types', $message_types, $post_id);
             }
 
-            wp_redirect(add_query_arg('survey_submitted', 'true', get_permalink()));
+            wp_safe_redirect(add_query_arg('survey_submitted', 'true', wp_get_referer()));
             exit;
         }
-    }
 }
+
 add_action('admin_post_nopriv_submit_food_survey', 'handle_food_survey_submission');
 add_action('admin_post_submit_food_survey', 'handle_food_survey_submission');
 
