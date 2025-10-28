@@ -195,22 +195,22 @@ function handle_food_survey_submission() {
 
             if (!empty($_POST['survey_health_motives'])) {
                 $health_motives = array_map('sanitize_text_field', $_POST['survey_health_motives']);
-                update_post_meta($post_id, 'health_motives', $health_motives);
+                update_field('survey_health_motives', $health_motives, $post_id);
             }
 
             if (!empty($_POST['survey_food_waste_reasons'])) {
                 $food_waste_reasons = array_map('sanitize_text_field', $_POST['survey_food_waste_reasons']);
-                update_post_meta($post_id, 'food_waste_reasons', $food_waste_reasons);
+                update_field('survey_food_waste_reasons', $food_waste_reasons, $post_id);
             }
 
             if (!empty($_POST['survey_food_waste_motives'])) {
                 $food_waste_motives = array_map('sanitize_text_field', $_POST['survey_food_waste_motives']);
-                update_post_meta($post_id, 'food_waste_motives', $food_waste_motives);
+                update_field('survey_food_waste_motives', $food_waste_motives, $post_id);
             }
 
             if (!empty($_POST['survey_message_types'])) {
                 $message_types = array_map('sanitize_text_field', $_POST['survey_message_types']);
-                update_post_meta($post_id, 'message_types', $message_types);
+                update_field('survey_message_types', $message_types, $post_id);
             }
 
             wp_redirect(add_query_arg('survey_submitted', 'true', get_permalink()));
