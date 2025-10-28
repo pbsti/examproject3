@@ -219,7 +219,7 @@ function handle_food_survey_submission() {
             exit;
         }  
     }
-}
+    
 add_action('admin_post_nopriv_submit_food_survey', 'handle_food_survey_submission');
 add_action('admin_post_submit_food_survey', 'handle_food_survey_submission');
 
