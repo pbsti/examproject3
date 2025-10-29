@@ -214,7 +214,7 @@ function register_survey_response_post_type() {
         'public'             => true,
         'show_ui'            => true,
         'show_in_menu'       => true,
-        'capability_type'    => 'response', // use 'response' capability type if you want custom caps
+        'capability_type'    => 'response',
         'map_meta_cap'       => true,
         'has_archive'        => false,
         'hierarchical'       => false,
@@ -300,7 +300,7 @@ function handle_food_survey_submission() {
 add_action('admin_post_nopriv_submit_food_survey', 'handle_food_survey_submission');
 add_action('admin_post_submit_food_survey', 'handle_food_survey_submission');
 
-function add_response_caps_to_roles() {
+function add_response_caps_to_um_members() {
     $roles_to_update = array( 'administrator', 'editor' );
 
     $caps = array(
@@ -329,7 +329,7 @@ function add_response_caps_to_roles() {
         }
     }
 }
-add_action( 'init', 'add_response_caps_to_roles' );
+add_action( 'init', 'add_response_caps_to_um_members' );
 
 
 function yumgo_register_testimonial_cpt() {
