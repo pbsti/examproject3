@@ -193,6 +193,40 @@ add_action('admin_post_nopriv_submit_testimonial', 'handle_testimonial_submissio
 add_action('admin_post_submit_testimonial', 'handle_testimonial_submission');
 
 // Food Survey
+function register_survey_response_post_type() {
+    $labels = array(
+        'name'               => 'Survey Responses',
+        'singular_name'      => 'Survey Response',
+        'menu_name'          => 'Survey Responses',
+        'name_admin_bar'     => 'Survey Response',
+        'add_new'            => 'Add New',
+        'add_new_item'       => 'Add New Response',
+        'edit_item'          => 'Edit Response',
+        'new_item'           => 'New Response',
+        'view_item'          => 'View Response',
+        'search_items'       => 'Search Responses',
+        'not_found'          => 'No responses found',
+        'not_found_in_trash' => 'No responses found in Trash',
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'capability_type'    => 'response', // use 'response' capability type if you want custom caps
+        'map_meta_cap'       => true,
+        'has_archive'        => false,
+        'hierarchical'       => false,
+        'supports'           => array( 'title', 'custom-fields' ),
+        'menu_icon'          => 'dashicons-feedback',
+        'rewrite'            => array( 'slug' => 'survey-response', 'with_front' => false ),
+    );
+    register_post_type( 'survey_response', $args );
+}
+add_action( 'init', 'register_survey_response_post_type' );
+
+
 function handle_food_survey_submission() {
     if (!isset($_POST['action']) || $_POST['action'] !== 'submit_food_survey') {
         return;
@@ -201,12 +235,10 @@ function handle_food_survey_submission() {
         wp_die( 'Security check failed (invalid nonce).', 'Invalid request', array( 'response' => 403 ) );
     }
 
-    // Basic required validation
     if ( empty( $_POST['survey_gender'] ) || ! isset( $_POST['survey_age'] ) ) {
         wp_die( 'Required survey fields are missing.', 'Invalid request', array( 'response' => 400 ) );
     }
 
-    // Whitelist/select validation
     $allowed_genders = array( 'Woman', 'Man', 'Prefer not to say' );
     $gender = sanitize_text_field( wp_unslash( $_POST['survey_gender'] ) );
     if ( ! in_array( $gender, $allowed_genders, true ) ) {
@@ -218,7 +250,6 @@ function handle_food_survey_submission() {
         wp_die( 'Invalid age value.', 'Invalid request', array( 'response' => 400 ) );
     }
 
-    // Optional whitelist for other selects
     $allowed_importance = array( 'Very important', 'Somewhat important', 'Not very important', 'Not important at all' );
     $importance = isset( $_POST['survey_healthy_eating'] ) ? sanitize_text_field( wp_unslash( $_POST['survey_healthy_eating'] ) ) : '';
     if ( $importance !== '' && ! in_array( $importance, $allowed_importance, true ) ) {
@@ -236,10 +267,10 @@ function handle_food_survey_submission() {
         }
 
         if ($post_id) {
-            update_field('survey_gender', sanitize_text_field($_POST['survey_gender']),$post_id);
-            update_field('survey_age', sanitize_text_field($_POST['survey_age']), $post_id);
-            update_field('survey_health_importance', sanitize_text_field($_POST['survey_healthy_eating']));
-            update_field('survey_food_waste_frequency', sanitize_text_field($_POST['survey_food_waste_frequency']), $post_id);
+            update_field('survey_gender', sanitize_text_field(wp_unslash($_POST['survey_gender'])),$post_id);
+            update_field('survey_age', sanitize_text_field(wp_unslash($_POST['survey_age'])), $post_id);
+            update_field('survey_health_importance', sanitize_text_field(wp_unslash($_POST['survey_healthy_eating'])), $post_id);
+            update_field('survey_food_waste_frequency', sanitize_text_field(wp_unslash($_POST['survey_food_waste_frequency'])), $post_id);
 
             if (!empty($_POST['survey_health_motives']) && is_array( $_POST['survey_health_motives'] ) ) {
                 $health_motives = array_map('sanitize_text_field', wp_unslash( $_POST['survey_health_motives']));
@@ -268,6 +299,37 @@ function handle_food_survey_submission() {
     
 add_action('admin_post_nopriv_submit_food_survey', 'handle_food_survey_submission');
 add_action('admin_post_submit_food_survey', 'handle_food_survey_submission');
+
+function add_response_caps_to_roles() {
+    $roles_to_update = array( 'administrator', 'editor' );
+
+    $caps = array(
+        'read_response',
+        'edit_response',
+        'delete_response',
+        'edit_responses',
+        'edit_others_responses',
+        'publish_responses',
+        'read_private_responses',
+        'delete_responses',
+        'delete_private_responses',
+        'delete_published_responses',
+        'delete_others_responses',
+        'edit_private_responses',
+        'edit_published_responses',
+    );
+
+    foreach ( $roles_to_update as $role_name ) {
+        $role = get_role( $role_name );
+        if ( ! $role ) {
+            continue;
+        }
+        foreach ( $caps as $cap ) {
+            $role->add_cap( $cap );
+        }
+    }
+}
+add_action( 'init', 'add_response_caps_to_roles' );
 
 
 function yumgo_register_testimonial_cpt() {
@@ -329,45 +391,6 @@ function add_ability_caps_to_um_members() {
     }
 }
 add_action('init', 'add_ability_caps_to_um_members');
-
-register_post_type('response', array(
-    'label'         => 'Responses',
-    'public'        => true,
-    'capability_type' => 'response',
-    'map_meta_cap'  => true,
-    'has_archive'   => false,
-    'supports'      => array('title', 'custom-fields'),
-));
-
-function add_response_caps_to_roles() {
-    $roles_to_update = array( 'administrator', 'editor' );
-
-    $caps = array(
-        'read_response',
-        'edit_response',
-        'delete_response',
-        'edit_responses',
-        'edit_others_responses',
-        'publish_responses',
-        'read_private_responses',
-        'delete_responses',
-        'delete_private_responses',
-        'delete_published_responses',
-        'delete_others_responses',
-        'edit_private_responses',
-        'edit_published_responses',
-    );
-
-    foreach ( $roles_to_update as $role_name ) {
-        $role = get_role( $role_name );
-        if ( ! $role ) {
-            continue;
-        }
-        foreach ( $caps as $cap ) {
-        }
-    }
-}
-add_action('init', 'add_response_caps_to_roles');
 
 function enhance_um_comment_editor_role() {
     $role = get_role('um_comment-editor');
