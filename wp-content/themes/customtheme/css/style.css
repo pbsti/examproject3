@@ -494,6 +494,36 @@ ul.products li.product .price {
   display: none !important;
 }
 
+.woocommerce ul.products li.product .button{
+  margin-top: 0px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.comment-form-comment,
+.woocommerce .quantity .qty{
+  outline: 1px solid #d1d5db;
+}
+
+.woocommerce div.product form.cart{
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.woocommerce ul.products li.product .onsale {
+  position: absolute;
+  background: #10b981; /* bright green or whatever fits */
+  color: #fff;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  z-index: 20; /* 👈 this makes it appear above the image */
+  pointer-events: none; /* optional, so it doesn’t block clicks */
+}
+
 @media (max-width: 640px) {
   .related.products .product {
     flex-direction: column;
