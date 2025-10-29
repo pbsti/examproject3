@@ -300,15 +300,12 @@ register_post_type('ability', array(
 ));
 
 function add_ability_caps_to_um_members() {
-    $roles_to_update = array( 'administrator', 'editor' ); // add other roles if needed
+    $roles_to_update = array( 'administrator', 'editor' );
 
     $caps = array(
-        // primitive caps
         'read_ability',
         'edit_ability',
         'delete_ability',
-
-        // plural / post-type caps
         'edit_abilities',
         'edit_others_abilities',
         'publish_abilities',
