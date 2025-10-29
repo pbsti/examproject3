@@ -386,3 +386,9 @@ function rename_dokan_vendor_to_restaurant( $translated_text ) {
     return $translated_text;
 }
 add_filter( 'gettext', 'rename_dokan_vendor_to_restaurant' );
+
+add_action('wp', function() {
+    if (is_woocommerce() || is_shop() || is_product_category() || is_product()) {
+        remove_action('woocommerce_sidebar', 'woocommerce_get_sidebar', 10);
+    }
+});
