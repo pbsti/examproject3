@@ -528,8 +528,7 @@ ul.products li.product .price {
 }
 
 #author, #email, #url{
-  outline: 1px, solid #000;
-  
+  outline: 1px solid #000;
 }
 
 @media (max-width: 640px) {
