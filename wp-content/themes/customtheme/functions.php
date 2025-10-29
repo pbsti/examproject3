@@ -89,6 +89,21 @@ function plp_register_strings() {
         pll_register_string('Submit survey', 'Thank you survey');
         pll_register_string('Home', 'Meet our vendors');
         pll_register_string('Home', 'About us');
+        pll_register_string('Footer', 'Contact');
+        pll_register_string('Footer', 'Email');
+        pll_register_string('Footer', 'Quick links');
+        pll_register_string('Footer', 'Contact');
+        pll_register_string('Footer', 'About YumGo');
+        pll_register_string('Footer', 'Explore');
+        pll_register_string('Footer', 'Vendors');
+        pll_register_string('Footer', 'Order Now');
+        pll_register_string('Footer', 'Blog & Stories');
+        pll_register_string('Footer', 'Careers');
+        pll_register_string('Footer', 'Legal links');
+        pll_register_string('Footer', 'Privacy Policy');
+        pll_register_string('Footer', 'Terms & Conditions');
+        pll_register_string('Footer', 'Cookie Policy');
+        pll_register_string('Footer', 'Social Media');
 
 }
 
