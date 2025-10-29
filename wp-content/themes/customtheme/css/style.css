@@ -529,6 +529,23 @@ ul.products li.product .price {
 
 #author, #email, #url{
   outline: 1px solid #000;
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+.comment-form input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+#wpcaptcha_captcha {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
 }
 
 @media (max-width: 640px) {
