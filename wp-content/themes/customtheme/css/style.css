@@ -542,9 +542,12 @@ ul.products li.product .price {
 }
 
 #wpcaptcha_captcha {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  outline: 1px solid #000;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
   margin-top: 8px;
 }
 
