@@ -292,7 +292,7 @@ add_filter('use_block_editor_for_post_type', function($use_block_editor, $post_t
 }, 10, 2);
 
 register_post_type('ability', array(
-    'label' => 'Abilities',
+    'label' => 'abilities',
     'public' => true,
     'capability_type' => 'ability',
     'map_meta_cap' => true,
