@@ -300,18 +300,35 @@ register_post_type('ability', array(
 ));
 
 function add_ability_caps_to_um_members() {
-    $role = get_role('administrator');
-    if ($role) {
-        $role->add_cap('read');
-        $role->add_cap('edit_abilities');
-        $role->add_cap('edit_others_abilities');
-        $role->add_cap('publish_abilities');
-        $role->add_cap('delete_abilities');
+    $roles_to_update = array( 'administrator', 'editor' ); // add other roles if needed
 
-        $role->add_cap('edit_responses');
-        $role->add_cap('edit_others_responses');
-        $role->add_cap('publish_responses');
-        $role->add_cap('delete_responses');
+    $caps = array(
+        // primitive caps
+        'read_ability',
+        'edit_ability',
+        'delete_ability',
+
+        // plural / post-type caps
+        'edit_abilities',
+        'edit_others_abilities',
+        'publish_abilities',
+        'read_private_abilities',
+        'delete_abilities',
+        'delete_private_abilities',
+        'delete_published_abilities',
+        'delete_others_abilities',
+        'edit_private_abilities',
+        'edit_published_abilities',
+    );
+
+    foreach ( $roles_to_update as $role_name ) {
+        $role = get_role( $role_name );
+        if ( ! $role ) {
+            continue;
+        }
+        foreach ( $caps as $cap ) {
+            $role->add_cap( $cap );
+        }
     }
 }
 add_action('init', 'add_ability_caps_to_um_members');
