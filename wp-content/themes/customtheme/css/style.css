@@ -527,6 +527,11 @@ ul.products li.product .price {
   pointer-events: none; /* optional, so it doesn’t block clicks */
 }
 
+#author, #email, #url{
+  outline: 1px, solid #000;
+  
+}
+
 @media (max-width: 640px) {
   .related.products .product {
     flex-direction: column;
