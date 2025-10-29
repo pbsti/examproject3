@@ -330,6 +330,45 @@ function add_ability_caps_to_um_members() {
 }
 add_action('init', 'add_ability_caps_to_um_members');
 
+register_post_type('response', array(
+    'label'         => 'Responses',
+    'public'        => true,
+    'capability_type' => 'response',
+    'map_meta_cap'  => true,
+    'has_archive'   => false,
+    'supports'      => array('title', 'custom-fields'),
+));
+
+function add_response_caps_to_roles() {
+    $roles_to_update = array( 'administrator', 'editor' );
+
+    $caps = array(
+        'read_response',
+        'edit_response',
+        'delete_response',
+        'edit_responses',
+        'edit_others_responses',
+        'publish_responses',
+        'read_private_responses',
+        'delete_responses',
+        'delete_private_responses',
+        'delete_published_responses',
+        'delete_others_responses',
+        'edit_private_responses',
+        'edit_published_responses',
+    );
+
+    foreach ( $roles_to_update as $role_name ) {
+        $role = get_role( $role_name );
+        if ( ! $role ) {
+            continue;
+        }
+        foreach ( $caps as $cap ) {
+        }
+    }
+}
+add_action('init', 'add_response_caps_to_roles');
+
 function enhance_um_comment_editor_role() {
     $role = get_role('um_comment-editor');
 
