@@ -356,7 +356,7 @@ function um_comment_editor_meta_caps($caps, $cap, $user_id, $args) {
 add_filter('map_meta_cap', 'um_comment_editor_meta_caps', 10, 4);
 
 function yumgo_grant_testimonial_caps() {
-    $roles = ['administrator', 'um_testimonials-checker'];
+    $roles = ['administrator'];
     
     $caps = [
         'edit_testimonial',
