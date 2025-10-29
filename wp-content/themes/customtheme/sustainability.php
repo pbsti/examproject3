@@ -209,7 +209,7 @@ Template Name: Sustainability Page
             <select name="survey_food_waste_frequency" required
                 class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-[#DCE896]-500 focus:border-[#DCE896]-500">
                 <option value=""><?php pll_e("Select")?></option>
-                <option value="Never"><?php pll_e("Never")?>r</option>
+                <option value="Never"><?php pll_e("Never")?></option>
                 <option value="Rarely"><?php pll_e("Rarely")?></option>
                 <option value="Sometimes"><?php pll_e("Sometimes")?></option>
                 <option value="Often"><?php pll_e("Often")?></option>
