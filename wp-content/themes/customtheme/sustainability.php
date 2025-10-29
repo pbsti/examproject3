@@ -151,6 +151,7 @@ Template Name: Sustainability Page
     </h2>
     <form method="POST" class="p-6" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
         <input type="hidden" name="action" value="submit_food_survey">
+        <?php wp_nonce_field( 'submit_food_survey_action', 'survey_nonce' ); ?>
         <div class="mb-4">
             <label class="block font-bold text-black-700 mb-1"><?php pll_e("Gender Q")?></label>
             <select name="survey_gender" required

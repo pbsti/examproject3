@@ -182,6 +182,33 @@ function handle_food_survey_submission() {
     if (!isset($_POST['action']) || $_POST['action'] !== 'submit_food_survey') {
         return;
     }
+    if ( empty( $_POST['survey_nonce'] ) || ! wp_verify_nonce( $_POST['survey_nonce'], 'submit_food_survey_action' ) ) {
+        wp_die( 'Security check failed (invalid nonce).', 'Invalid request', array( 'response' => 403 ) );
+    }
+
+    // Basic required validation
+    if ( empty( $_POST['survey_gender'] ) || ! isset( $_POST['survey_age'] ) ) {
+        wp_die( 'Required survey fields are missing.', 'Invalid request', array( 'response' => 400 ) );
+    }
+
+    // Whitelist/select validation
+    $allowed_genders = array( 'Woman', 'Man', 'Prefer not to say' );
+    $gender = sanitize_text_field( wp_unslash( $_POST['survey_gender'] ) );
+    if ( ! in_array( $gender, $allowed_genders, true ) ) {
+        wp_die( 'Invalid gender value.', 'Invalid request', array( 'response' => 400 ) );
+    }
+
+    $age = intval( $_POST['survey_age'] );
+    if ( $age < 0 || $age > 120 ) {
+        wp_die( 'Invalid age value.', 'Invalid request', array( 'response' => 400 ) );
+    }
+
+    // Optional whitelist for other selects
+    $allowed_importance = array( 'Very important', 'Somewhat important', 'Not very important', 'Not important at all' );
+    $importance = isset( $_POST['survey_healthy_eating'] ) ? sanitize_text_field( wp_unslash( $_POST['survey_healthy_eating'] ) ) : '';
+    if ( $importance !== '' && ! in_array( $importance, $allowed_importance, true ) ) {
+        wp_die( 'Invalid value for importance.', 'Invalid request', array( 'response' => 400 ) );
+    }
 
         $post_id = wp_insert_post(array(
             'post_type'   => 'survey_response',
@@ -189,33 +216,37 @@ function handle_food_survey_submission() {
             'post_title'  => 'Survey Response - ' . date('Y-m-d H:i:s'),
         ));
 
+        if ( is_wp_error( $post_id ) || ! $post_id ) {
+        wp_die( 'Unable to save survey response.', 'Server error', array( 'response' => 500 ) );
+        }
+
         if ($post_id) {
             update_field('survey_gender', sanitize_text_field($_POST['survey_gender']),$post_id);
             update_field('survey_age', sanitize_text_field($_POST['survey_age']), $post_id);
             update_field('survey_health_importance', sanitize_text_field($_POST['survey_healthy_eating']));
             update_field('survey_food_waste_frequency', sanitize_text_field($_POST['survey_food_waste_frequency']), $post_id);
 
-            if (!empty($_POST['survey_health_motives'])) {
-                $health_motives = array_map('sanitize_text_field', $_POST['survey_health_motives']);
+            if (!empty($_POST['survey_health_motives']) && is_array( $_POST['survey_health_motives'] ) ) {
+                $health_motives = array_map('sanitize_text_field', wp_unslash( $_POST['survey_health_motives']));
                 update_field('survey_health_motives', $health_motives, $post_id);
             }
 
-            if (!empty($_POST['survey_food_waste_reasons'])) {
-                $food_waste_reasons = array_map('sanitize_text_field', $_POST['survey_food_waste_reasons']);
+            if (!empty($_POST['survey_food_waste_reasons']) && is_array( $_POST['survey_food_waste_reasons'] ) ) {
+                $food_waste_reasons = array_map('sanitize_text_field', wp_unslash( $_POST['survey_food_waste_reasons']));
                 update_field('survey_food_waste_reasons', $food_waste_reasons, $post_id);
             }
 
-            if (!empty($_POST['survey_food_waste_motives'])) {
-                $food_waste_motives = array_map('sanitize_text_field', $_POST['survey_food_waste_motives']);
+            if (!empty($_POST['survey_food_waste_motives']) && is_array( $_POST['survey_food_waste_motives'] ) )  {
+                $food_waste_motives = array_map('sanitize_text_field', wp_unslash( $_POST['survey_food_waste_motives']));
                 update_field('survey_food_waste_motives', $food_waste_motives, $post_id);
             }
 
-            if (!empty($_POST['survey_message_types'])) {
-                $message_types = array_map('sanitize_text_field', $_POST['survey_message_types']);
+            if (!empty($_POST['survey_message_types']) && is_array( $_POST['survey_message_types'] ) )  {
+                $message_types = array_map('sanitize_text_field', wp_uslash( $_POST['survey_message_types']));
                 update_field('survey_message_types', $message_types, $post_id);
             }
 
-            wp_safe_redirect(add_query_arg('survey_submitted', 'true', wp_get_referer()));
+            wp_safe_redirect(add_query_arg('survey_submitted', 'true', wp_get_referer() ?: home_url()));
             exit;
         }  
     }
