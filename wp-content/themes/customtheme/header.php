@@ -42,7 +42,10 @@
     <div id="menu" class="hidden md:flex absolute md:static top-16 left-0 w-full md:w-auto bg-white md:bg-transparent shadow md:shadow-none z-20">
       <ul class="flex flex-col md:flex-row uppercase text-black md:items-center md:space-x-6 p-4 md:p-0">
         <li class="text-base font-bold">
-          <a href="<?php echo esc_url(get_permalink(get_page_by_path('restaurants'))); ?>"><?php pll_e("Restaurants")?></a>
+          <a href="<?php echo esc_url(get_permalink(get_page_by_path('restaurants'))); ?>"><?php pll_e("Food")?></a>
+        </li>
+        <li class="text-base font-bold">
+          <a href="<?php echo esc_url(get_permalink(get_page_by_path('store-listing'))); ?>"><?php pll_e("Restaurants")?></a>
         </li>
         <li class="text-base font-bold">
           <a href="<?php echo esc_url(get_permalink(get_page_by_path('sustainability'))); ?>"><?php pll_e("SUSTAINABILITY")?></a>
@@ -54,7 +57,7 @@
           <a href="<?php echo esc_url(get_permalink(get_page_by_path('login'))); ?>"><?php pll_e("Log In")?></a>
         </li>
         <li class="text-base font-bold">
-          <a href="<?php echo esc_url(get_permalink(get_page_by_path(''))); ?>"><?php pll_e("Cart")?></a>
+          <a href="<?php echo esc_url(get_permalink(get_page_by_path('cart'))); ?>"><?php pll_e("Cart")?></a>
         </li>
 
         <li class="relative mt-2 md:mt-0" id="lang-dropdown">
