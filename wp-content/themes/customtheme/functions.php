@@ -16,6 +16,8 @@ add_action('init', 'plp_disable_gutenberg');
 
 function plp_register_strings() {
         pll_register_string('Home', 'Home');
+        pll_register_string('Food', 'Food');
+        pll_register_string('Restaurants', 'Restaurants');
         pll_register_string('Blogs', 'Yumgo Blogs');
         pll_register_string('Log In', 'Log In');
         pll_register_string('Cart', 'Cart');
