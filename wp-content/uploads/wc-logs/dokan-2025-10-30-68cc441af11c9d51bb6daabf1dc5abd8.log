@@ -1,0 +1,12 @@
+2025-10-30T15:15:54+00:00 DEBUG Creating sub order for vendor: #8
+2025-10-30T15:15:54+00:00 DEBUG #427 - Creating Shipping.
+2025-10-30T15:15:54+00:00 DEBUG #427 - Adding shipping item.
+2025-10-30T15:16:03+00:00 DEBUG Created sub order : #427
+2025-10-30T15:16:03+00:00 DEBUG Creating sub order for vendor: #11
+2025-10-30T15:16:04+00:00 DEBUG #428 - Creating Shipping.
+2025-10-30T15:16:04+00:00 DEBUG #428 - Adding shipping item.
+2025-10-30T15:16:11+00:00 DEBUG Created sub order : #428
+2025-10-30T15:16:12+00:00 DEBUG Creating sub order for vendor: #10
+2025-10-30T15:16:12+00:00 DEBUG #429 - Creating Shipping.
+2025-10-30T15:16:12+00:00 DEBUG #429 - Adding shipping item.
+2025-10-30T15:16:20+00:00 DEBUG Created sub order : #429
