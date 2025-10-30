@@ -54,7 +54,11 @@
           <a href="<?php echo esc_url(get_permalink(get_page_by_path('yumgo-blogs'))); ?>"><?php pll_e("Blogs")?></a>
         </li>
         <li class="text-base font-bold">
-          <a href="<?php echo esc_url(get_permalink(get_page_by_path('login'))); ?>"><?php pll_e("Log In")?></a>
+          <?php if ( is_user_logged_in() ) : ?>
+              <a href="<?php echo esc_url(get_permalink(get_page_by_path('my-account'))); ?>"><?php pll_e("Log In")?></a>
+          <?php else : ?>
+              <a href="<?php echo esc_url(wp_login_url()); ?>"><?php pll_e("Log In")?></a>
+          <?php endif; ?>
         </li>
         <li class="text-base font-bold">
           <a href="<?php echo esc_url(get_permalink(get_page_by_path('cart'))); ?>"><?php pll_e("Cart")?></a>
