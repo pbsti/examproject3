@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 <main>
-    <h1 class="flex justify-center text-7xl bold mt-8"><?php pll_e("Yumgo Blogs") ?></h1>
+    <h1 class="flex justify-center text-center text-7xl bold mt-8"><?php pll_e("Yumgo Blogs") ?></h1>
 
     <?php
         $all_categories = get_categories();

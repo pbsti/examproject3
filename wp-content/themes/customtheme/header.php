@@ -40,27 +40,27 @@
     </button>
 
     <div id="menu" class="hidden md:flex absolute md:static top-16 left-0 w-full md:w-auto bg-white md:bg-transparent shadow md:shadow-none z-20">
-      <ul class="flex flex-col md:flex-row uppercase text-black md:items-center md:space-x-6 p-4 md:p-0">
-        <li class="text-base font-bold">
+      <ul class="flex flex-col items-end md:flex-row uppercase text-black md:items-center md:space-x-6 px-4 pb-4 md:px-0 md:pb-0">
+        <li class="text-base font-bold p-2 md:p-0">
           <a href="<?php echo esc_url(get_permalink(get_page_by_path('restaurants'))); ?>"><?php pll_e("Food")?></a>
         </li>
-        <li class="text-base font-bold">
+        <li class="text-base font-bold p-2 md:p-0">
           <a href="<?php echo esc_url(get_permalink(get_page_by_path('store-listing'))); ?>"><?php pll_e("Restaurants")?></a>
         </li>
-        <li class="text-base font-bold">
+        <li class="text-base font-bold p-2 md:p-0">
           <a href="<?php echo esc_url(get_permalink(get_page_by_path('sustainability'))); ?>"><?php pll_e("SUSTAINABILITY")?></a>
         </li>
-        <li class="text-base font-bold">
+        <li class="text-base font-bold p-2 md:p-0">
           <a href="<?php echo esc_url(get_permalink(get_page_by_path('yumgo-blogs'))); ?>"><?php pll_e("Blogs")?></a>
         </li>
-        <li class="text-base font-bold">
+        <li class="text-base font-bold p-2 md:p-0">
           <?php if ( is_user_logged_in() ) : ?>
               <a href="<?php echo esc_url(get_permalink(get_page_by_path('my-account'))); ?>"><?php pll_e("Log In")?></a>
           <?php else : ?>
               <a href="<?php echo esc_url(wp_login_url()); ?>"><?php pll_e("Log In")?></a>
           <?php endif; ?>
         </li>
-        <li class="text-base font-bold">
+        <li class="text-base font-bold p-2 md:p-0">
           <a href="<?php echo esc_url(get_permalink(get_page_by_path('cart'))); ?>"><?php pll_e("Cart")?></a>
         </li>
 
@@ -103,25 +103,3 @@
     </div>
   </nav>
 </header>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var toggleBtn = document.getElementById('menu-toggle');
-  var menu = document.getElementById('menu');
-  toggleBtn.addEventListener('click', function() {
-    menu.classList.toggle('hidden');
-  });
-
-  var toggle = document.getElementById('lang-toggle');
-  var langMenu = document.getElementById('lang-menu');
-  toggle.addEventListener('click', function(e) {
-    e.stopPropagation();
-    langMenu.classList.toggle('hidden');
-  });
-  document.addEventListener('click', function(e) {
-    if (!document.getElementById('lang-dropdown').contains(e.target)) {
-      langMenu.classList.add('hidden');
-    }
-  });
-});
-</script>
