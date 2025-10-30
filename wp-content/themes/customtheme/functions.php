@@ -464,16 +464,13 @@ function rename_dokan_vendor_to_restaurant( $translated_text ) {
 add_filter( 'gettext', 'rename_dokan_vendor_to_restaurant' );
 
 add_action('wp', function() {
-    // Ensure WooCommerce sidebar removed on Woo pages (already present earlier)
     if ( is_woocommerce() || is_shop() || is_product_category() || is_product() ) {
         remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
     }
 
-    // Remove Dokan store sidebar on single-vendor / store pages
     if ( function_exists( 'dokan_is_store_page' ) && dokan_is_store_page() ) {
-        // try common Dokan sidebar hooks
         remove_action( 'dokan_sidebar_store', 'dokan_get_sidebar', 10 );
         remove_action( 'dokan_store_sidebar', 'dokan_get_sidebar', 10 );
         remove_action( 'dokan_render_store_sidebar', 'dokan_get_sidebar', 10 );
     }
-}, 9 ); // run early
+}, 9 );
