@@ -16,8 +16,8 @@
       <ul class="space-y-1">
         <li><a href="#" class="hover:underline"><?php pll_e("About YumGo")?></a></li>
         <li><a href="/sustainability" class="hover:underline"><?php pll_e("Explore")?></a></li>
-        <li><a href="/restaurants" class="hover:underline"><?php pll_e("Vendors")?></a></li>
-        <li><a href="/cart" class="hover:underline"><?php pll_e("Order Now")?></a></li>
+        <li><a href="/store-listing" class="hover:underline"><?php pll_e("Vendors")?></a></li>
+        <li><a href="/restaurants" class="hover:underline"><?php pll_e("Order Now")?></a></li>
         <li><a href="/yumgo-blogs" class="hover:underline"><?php pll_e("Blog & Stories")?></a></li>
       </ul>
     </div>
