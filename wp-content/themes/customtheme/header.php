@@ -40,7 +40,7 @@
     </button>
 
     <div id="menu" class="hidden md:flex absolute md:static top-16 left-0 w-full md:w-auto bg-white md:bg-transparent shadow md:shadow-none z-20">
-      <ul class="flex flex-col items-end md:flex-row uppercase text-black md:items-center md:space-x-6 px-4 pb-4 md:px-0 md:pb-0">
+      <ul class="flex flex-col items-end md:flex-row uppercase text-black md:items-center md:space-x-6 px-4 pb-12 md:px-0 md:pb-0">
         <li class="text-base font-bold p-2 md:p-0">
           <a href="<?php echo esc_url(get_permalink(get_page_by_path('restaurants'))); ?>"><?php pll_e("Food")?></a>
         </li>
